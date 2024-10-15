@@ -8,7 +8,6 @@ The **Digital Tests** frontend is a web application designed for creating, shari
 - [Getting Started](#getting-started)
 - [Responsive Design](#responsive-design)
 - [Localization](#localization)
-- [Environment Variables](#environment-variables)
 - [Technologies Used](#technologies-used)
 - [License](#license)
 
@@ -52,11 +51,7 @@ Make sure you have the following installed on your system:
 
    This will install all necessary packages listed in `package.json`
 
-4. **Set Up Environment Variables:**
-
-   Create a `.env` file in the root of the project directory and add the required environment variables as specified in the [Environment Variables](#environment-variables) section.
-
-5. **Run the Application:**
+4. **Run the Application:**
    ```
     npm run dev
    ```
@@ -80,18 +75,6 @@ The project uses **i18next** to support multiple languages. Currently, the suppo
 - **Arabic (ar)**: Right-to-left text direction.
 
 Translation files are located in the `src/translation/` directory.
-
-## Environment Variables
-
-Create a `.env` file in the root of project directory and add the following variables:
-
-```bash
- BACKEND_URL=<your-backend-url>
-```
-
-Replace each `<value>` with your actual configuration values:
-
-- **BACKEND_URL**: The base URL of your backend API (e.g., `http://localhost:8080/api/` or your production URL). This variable is used by the frontend to communicate with the backend.
 
 ## Technologies Used
 
