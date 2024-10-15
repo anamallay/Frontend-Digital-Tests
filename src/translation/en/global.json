@@ -1,0 +1,385 @@
+{
+  "Header": {
+    "digital_exams": "Digital Exams",
+    "all_public_exams": "All Public Exams",
+    "profile_user": "Profile",
+    "examiner_scores": "Scores",
+    "my_quizzes": "Quizzes",
+    "view_profile": "View Profile",
+    "logout": "Logout",
+    "my_library": "Library",
+    "login": "Login"
+  },
+  "Hero": {
+    "videoNotSupported": "Your browser does not support the video tag.",
+    "goal": "Our goal is to enhance learning",
+    "mainTitle": "A site to create digital exams",
+    "description": "You can now create, share, and take tests easily, with the ability to get instant results and evaluate your performance.",
+    "browseTitle": "Browse participant tests",
+    "browseButton": "Browse participant tests",
+    "alreadyRegistered": "Already registered with us?",
+    "login": "Login"
+  },
+  "HowToStart": {
+    "title": "How to Get Started",
+    "step1Title": "Create the Test",
+    "step1Description": "Easily create your test by adding appropriate questions, answers, and time limits.",
+    "step1Alt": "Step 1 icon",
+    "step1NumberAlt": "Step 1 number icon",
+    "step2Title": "Share the Test",
+    "step2Description": "Share the test with others through a dedicated link or social media.",
+    "step2Alt": "Step 2 icon",
+    "step2NumberAlt": "Step 2 number icon",
+    "step3Title": "Get Scores",
+    "step3Description": "Receive immediate results and analyze participant performance.",
+    "step3Alt": "Step 3 icon",
+    "step3NumberAlt": "Step 3 number icon",
+    "arrowAlt": "Arrow connecting steps"
+  },
+  "Contact": {
+    "title": "Get In Contact",
+    "description": "Feel free to reach out to us, and we will get back to you as soon as possible.",
+    "buttonText": "Contact Us"
+  },
+  "Auth": {
+    "Login": {
+      "welcome_back": "Welcome back!",
+      "prompt": "Hi! Are you ready to login? Just enter your {{type}} and password below, and you're good to go!",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "email_placeholder": "Email",
+      "username_placeholder": "Username",
+      "password_placeholder": "Password",
+      "use_username": "Use username instead",
+      "use_email": "Use email instead",
+      "missing_credentials": "Please enter your {{type}} and password",
+      "forgot_password": "Forgot Password?",
+      "login_button": "Login",
+      "no_account": "Don't have an account?",
+      "signup_now": "Sign up",
+      "error": "An error occurred during login"
+    },
+    "Register": {
+      "create_account": "Create Your Account",
+      "welcome_message": "Hi! We need some details from you to get started.",
+      "name": "Name",
+      "username": "Username",
+      "optional": "Optional",
+      "email": "Email",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "password_mismatch": "Passwords do not match",
+      "submit": "Register",
+      "already_have_account": "Already have an account?",
+      "login": "Login",
+      "registration_successful": "Registration Successful!",
+      "check_email": "Your account has been created. Please check your email to activate your account.",
+      "registration_error": "An error occurred during registration",
+      "enter_username_or_email": "Please enter either a username or an email.",
+      "account_created_no_email": "Your account has been created successfully. You can now log in using your username and password."
+    },
+    "ForgotPassword": {
+      "check_email": "Check Your Email",
+      "email_instructions": "We have sent you an email with instructions to reset your password. Please check your email.",
+      "title": "Forgot Password",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "submit_button": "Reset Password",
+      "login_link": "Login",
+      "register_link": "Create an Account"
+    },
+    "ActivateAccount": {
+      "success_message": "Account activated successfully.",
+      "account_already_active": "Your account is already active. You can now continue using your account.",
+      "redirect_to_login": "You will be redirected to the login page shortly...",
+      "failure_message": "Account activation failed.",
+      "failure_description": "An error occurred during the activation process. Please try again.",
+      "retry_button": "Try Again",
+      "already_active_message": "Your account is already active."
+    },
+    "ResetPassword": {
+      "success_message": "Password reset successfully",
+      "success_description": "Your password has been successfully reset. You can now log in using your new password.",
+      "new_password": "New Password",
+      "confirm_password": "Confirm Password",
+      "password_mismatch": "Passwords do not match",
+      "invalid_token": "Invalid reset token",
+      "submit_button": "Reset Password",
+      "loading": "Processing...",
+      "login_link": "Login",
+      "register_link": "Create an Account",
+      "error_message": "An error occurred while resetting the password"
+    }
+  },
+  "ProfileModal": {
+    "profile_title": "Profile",
+    "name_label": "Name",
+    "email_label": "Email",
+    "username_label": "Username",
+    "account_creation_date": "Account Creation Date",
+    "save_changes": "Save Changes",
+    "cancel": "Cancel",
+    "activation_warning": "This account is not activated",
+    "resend_activation": "Resend Activation Email",
+    "delete_account": "Delete Account"
+  },
+  "PublicQuiz": {
+    "no_title": "No Title Available",
+    "description_label": "Description",
+    "add_to_library": "Add to Library",
+    "unknown_user": "Unknown User",
+    "no_quizzes": "No quizzes found.",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "already_added": "Already Added"
+  },
+  "Footer": {
+    "copyright": "All rights reserved"
+  },
+  "Error": {
+    "page_not_found": "Page not found",
+    "description": "Sorry, the page you're looking for doesn't exist.",
+    "back_to_home": "Back to Home"
+  },
+  "Unauthorized": {
+    "title": "403",
+    "unauthorized": "Unauthorized",
+    "description": "You do not have permission to view this page."
+  },
+  "ReduxMessage": {
+    "Library": {
+      "fetchUserLibrary": "Failed to fetch user library",
+      "addPublicQuizToLibrary": "Failed to add public quiz to library",
+      "addQuizToLibraryUsingToken": "Failed to add quiz to library using token",
+      "removeQuizFromLibrary": "Failed to remove quiz from library",
+      "shareQuizWithCandidate": "Failed to share quiz with candidate"
+    },
+    "Question": {
+      "fetchQuestionsByQuizId": "Failed to fetch questions",
+      "fetchQuestionById": "Failed to fetch the question",
+      "addQuestion": "Failed to add question",
+      "deleteQuestion": "Failed to delete question",
+      "updateQuestionInQuiz": "Failed to update question",
+      "fetchQuizFromLibrary": "Failed to fetch quiz from the library"
+    },
+    "Quiz": {
+      "fetchQuizzes": "Failed to fetch quizzes",
+      "fetchUserQuizzes": "Failed to fetch user quizzes",
+      "fetchQuizById": "Failed to fetch quiz",
+      "createQuiz": "Failed to create quiz",
+      "deleteQuiz": "Failed to delete quiz",
+      "updateQuiz": "Failed to update quiz"
+    },
+    "Score": {
+      "fetchUserScores": "Failed to fetch user scores",
+      "fetchSingleScore": "Failed to fetch score details",
+      "fetchExaminerScores": "Failed to fetch examiner scores",
+      "noScoresAvailable": "No scores available",
+      "submitQuiz": "Failed to submit quiz",
+      "deleteScore": "Failed to delete score"
+    },
+    "User": {
+      "loginFailed": "Failed to log in",
+      "logoutFailed": "Failed to log out",
+      "forgetPasswordFailed": "Failed to send password reset link",
+      "resetPasswordFailed": "Failed to reset password",
+      "registerFailed": "Failed to register",
+      "activateAccountFailed": "Failed to activate account",
+      "updateUserFailed": "Failed to update user information",
+      "resendActivationEmailFailed": "Failed to resend activation email",
+      "deleteAccountFailed": "Failed to delete account",
+      "getUserDataFailed": "Failed to fetch user data"
+    }
+  },
+  "AddLibrary": {
+    "addingQuizToLibrary": "Adding the quiz to your library...",
+    "invalidLink": "Invalid link",
+    "successPublicQuiz": "The public quiz has been successfully added to your library",
+    "successPrivateQuiz": "The private quiz has been successfully added to your library",
+    "errorAddingQuiz": "An error occurred while adding the quiz to your library",
+    "errorPrefix": "Error:"
+  },
+  "Library": {
+    "loadingError": "An error occurred while loading the library.",
+    "noQuizzes": "There are currently no quizzes in your library.",
+    "libraryTitle": "Library and Quizzes",
+    "createdBy": "Created by:",
+    "anonymousUser": "Anonymous User",
+    "questionsCount": "Number of Questions:",
+    "score": "Score:",
+    "noScore": "Not yet submitted",
+    "noQuestions": "No questions available",
+    "submitted": "Submitted",
+    "quizInProgress": "Quiz in progress",
+    "startQuiz": "Start Quiz",
+    "removeQuiz": "Remove Quiz",
+    "viewScore": "View Score"
+  },
+  "Quiz": {
+    "loadingError": "An error occurred while loading the quizzes.",
+    "title": "User's Quizzes",
+    "noQuizzesFound": "No quizzes found.",
+    "numberOfQuestions": "Number of Questions:",
+    "description": "Quiz Description:",
+    "time": "Quiz Duration:",
+    "question": "question",
+    "minutes": "minutes",
+    "addQuiz": "Add Quiz",
+    "editQuiz": "Edit Quiz",
+    "shareQuiz": "Share Quiz",
+    "deleteQuiz": "Delete Quiz"
+  },
+  "QuizDetailsModal": {
+    "title": "Quiz Details",
+    "labelTitle": "Title:",
+    "labelDescription": "Description:",
+    "labelTime": "Time:",
+    "labelQuestionsCount": "Number of Questions:",
+    "labelCreatedAt": "Created At:",
+    "minutes": "minutes",
+    "questions": "questions",
+    "addQuiz": "Adding...",
+    "quizAdded": "Added",
+    "addQuizTooltip": "Add quiz to library",
+    "closeButton": "Close"
+  },
+  "QuizQuestions": {
+    "loadingError": "An error occurred while loading the questions.",
+    "quizTitle": "Quiz",
+    "noQuestionsFound": "No questions found for this quiz.",
+    "noOptionsAvailable": "No options available for this question.",
+    "submitAnswers": "Submit Answers",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "Score": {
+    "examinerQuizResults": "Examiner Quiz Results",
+    "noResultsAvailable": "No results available",
+    "score": "Score",
+    "totalQuestions": "Total Questions",
+    "correctAnswers": "Correct Answers",
+    "username": "Username"
+  },
+  "ShowScore": {
+    "loading": "Loading score details...",
+    "error": "Score not found",
+    "title": "Score Details",
+    "quizTitle": "Quiz:",
+    "score": "Score:",
+    "questionsAndAnswers": "Questions and Your Answers",
+    "question": "Question",
+    "correctAnswer": "Correct Answer",
+    "wrongAnswer": "Wrong Answer"
+  },
+  "ShowMyScore": {
+    "loading": "Loading your score details...",
+    "error": "Score not found",
+    "title": "Score Details",
+    "quizTitle": "Quiz:",
+    "score": "Score:",
+    "questionsAndAnswers": "Questions and Your Answers",
+    "question": "Question",
+    "correctAnswer": "Correct Answer",
+    "wrongAnswer": "Wrong Answer"
+  },
+  "Modals": {
+    "DeleteLibraryModal": {
+      "confirmationMessage": "Are you sure you want to delete this quiz from your library?",
+      "confirmButton": "Yes, I'm sure",
+      "cancelButton": "No, cancel"
+    },
+    "QuizStartModal": {
+      "startQuizTitle": "Start Quiz: {{quizTitle}}",
+      "confirmationMessage": "Are you ready to start the quiz? Make sure to review all instructions before proceeding.",
+      "cancelButton": "Cancel",
+      "confirmButton": "Start Now"
+    },
+    "DeleteQuestionModal": {
+      "confirmationMessage": "Are you sure you want to delete this question",
+      "confirmButton": "Yes, I'm sure",
+      "cancelButton": "No, cancel"
+    },
+    "EditQuestionDetailModal": {
+      "title": "Edit Question",
+      "questionLabel": "Question",
+      "optionsLabel": "Options",
+      "correctOptionLabel": "Choose the correct answer",
+      "correctOptionValue": "Option {{optionNumber}}",
+      "updateButton": "Update Question",
+      "closeButton": "Close"
+    },
+    "EditQuestionsModal": {
+      "editQuizTitle": "Edit Quiz: {{quizTitle}}",
+      "loadingError": "An error occurred while loading questions: {{error}}",
+      "noQuestionsFound": "No questions found for this quiz",
+      "addNewQuestionTitle": "Add a new question",
+      "addOptionsTitle": "Add options",
+      "chooseCorrectAnswerTitle": "Choose the correct answer",
+      "correctOption": "Option {{optionNumber}}",
+      "addQuestionButton": "Add Question",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+    "CreateQuizModal": {
+      "createNewQuiz": "Create New Quiz",
+      "quizTitleLabel": "Quiz Title",
+      "quizDescriptionLabel": "Quiz Description",
+      "quizTimeLabel": "Quiz Time (Minutes)",
+      "quizVisibilityLabel": "Quiz Type",
+      "publicOption": "Public",
+      "privateOption": "Private",
+      "createButton": "Create",
+      "cancelButton": "Cancel",
+      "error": {
+        "quizTimeRequired": "Quiz time is required and must be a number greater than zero.",
+        "quizCreationFailed": "Failed to create quiz. Please try again."
+      },
+      "decreaseTime": "Decrease",
+      "increaseTime": "Increase"
+    },
+    "DeleteQuizModal": {
+      "confirmationMessage": "Are you sure you want to delete this quiz",
+      "warning": "Warning:",
+      "warningMessage": "All grades related to this quiz will be deleted. This information cannot be restored after deletion",
+      "confirmButton": "Yes, I'm sure",
+      "cancelButton": "No, cancel"
+    },
+    "EditQuizModal": {
+      "title": "Edit Quiz Information",
+      "errorMessage": "Error updating quiz. Please try again.",
+      "quizTitleLabel": "Quiz Title",
+      "quizTitlePlaceholder": "Enter quiz title",
+      "quizDescriptionLabel": "Quiz Description",
+      "quizDescriptionPlaceholder": "Enter a description for the quiz...",
+      "quizTimeLabel": "Allowed Time (in minutes)",
+      "quizTimePlaceholder": "Allowed time for the quiz (in minutes)",
+      "timeInputHint": "Enter the total number of minutes students can complete the quiz",
+      "visibilityLabel": "Quiz Type",
+      "visibilityPublic": "Public",
+      "visibilityPrivate": "Private",
+      "saveChangesButton": "Save Changes",
+      "cancelButton": "Cancel"
+    },
+    "ShareLinkModal": {
+      "title": "Share Quiz Link",
+      "description": "Here is the shareable link for the quiz",
+      "copyButton": "Copy Link",
+      "copiedButton": "Link Copied",
+      "closeButton": "Close"
+    },
+    "DeleteScoreModal": {
+      "confirmationMessage": "Are you sure you want to delete the test score?",
+      "confirmButton": "Yes, I'm sure",
+      "cancelButton": "No, Cancel"
+    },
+    "DeleteAccountModal": {
+      "title": "Confirm Account Deletion",
+      "confirmationMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+      "warningMessage": "Warning: All data associated with this account, including tests and scores, will be permanently deleted. This information cannot be recovered after deletion.",
+      "deleteButton": "Delete Account",
+      "cancelButton": "Cancel"
+    }
+  }
+}

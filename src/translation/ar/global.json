@@ -1,0 +1,385 @@
+{
+  "Header": {
+    "digital_exams": "الاختبارات الرقمية",
+    "all_public_exams": "جميع الإختبارات العامة",
+    "profile_user": "الملف الشخصي",
+    "examiner_scores": "الدرجات",
+    "my_quizzes": "الإختبارات",
+    "view_profile": "عرض الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "my_library": "المكتبة",
+    "login": "تسجيل الدخول"
+  },
+  "Hero": {
+    "videoNotSupported": "متصفحك لا يدعم فيديو HTML.",
+    "goal": "هدفنا هو تعزيز التعلم",
+    "mainTitle": "موقع لإنشاء الامتحانات الرقمية",
+    "description": "يمكنك الآن إنشاء الإختبارات، مشاركتها، وأدائها بسهولة، مع إمكانية الحصول على نتائج فورية وتقييم أداءك.",
+    "browseTitle": "تصفح إختبارات المشاركين",
+    "browseButton": "تصفح إختبارات المشاركين",
+    "alreadyRegistered": "هل سجلت معنا بالفعل؟",
+    "login": "تسجيل الدخول"
+  },
+  "HowToStart": {
+    "title": "كيف يمكنك البدء",
+    "step1Title": "إنشاء الإختبار",
+    "step1Description": "قم بإنشاء اختبارك بسهولة عن طريق إضافة الأسئلة والإجابات المناسبة، والوقت اللازم له.",
+    "step1Alt": "رمز الخطوة 1",
+    "step1NumberAlt": "رمز الرقم للخطوة 1",
+    "step2Title": "مشاركة الإختبار",
+    "step2Description": "شارك الاختبار مع الآخرين عبر رابط مخصص أو وسائل التواصل الاجتماعي.",
+    "step2Alt": "رمز الخطوة 2",
+    "step2NumberAlt": "رمز الرقم للخطوة 2",
+    "step3Title": "الحصول على الدرجات",
+    "step3Description": "احصل على النتائج فورًا وتعرف على أداء المشاركين.",
+    "step3Alt": "رمز الخطوة 3",
+    "step3NumberAlt": "رمز الرقم للخطوة 3",
+    "arrowAlt": "سهم يربط الخطوات"
+  },
+  "Contact": {
+    "title": "تواصل معي",
+    "description": "لا تتردد في التواصل معنا وسنرد عليك في أقرب وقت ممكن.",
+    "buttonText": "تواصل معنا"
+  },
+  "Auth": {
+    "Login": {
+      "welcome_back": "مرحبًا بعودتك!",
+      "prompt": "مرحبًا! هل أنت مستعد لتسجيل الدخول؟ فقط أدخل {{type}} وكلمة المرور أدناه وستكون جاهزًا!",
+      "email": "البريد الإلكتروني",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "email_placeholder": "البريد الإلكتروني",
+      "username_placeholder": "اسم المستخدم",
+      "password_placeholder": "كلمة المرور",
+      "use_username": "استخدام اسم المستخدم بدلاً من ذلك",
+      "use_email": "استخدام البريد الإلكتروني بدلاً من ذلك",
+      "missing_credentials": "يرجى إدخال {{type}} وكلمة المرور",
+      "forgot_password": "نسيت كلمة المرور؟",
+      "login_button": "تسجيل الدخول",
+      "no_account": "ليس لديك حساب؟",
+      "signup_now": "سجل الآن",
+      "error": "حدث خطأ أثناء تسجيل الدخول"
+    },
+    "Register": {
+      "create_account": "إنشاء حسابك",
+      "welcome_message": "مرحبًا! نحن بحاجة إلى بعض التفاصيل منك للبدء.",
+      "name": "الاسم",
+      "username": "اسم المستخدم",
+      "optional": "إختياري",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "password_mismatch": "كلمات المرور غير متطابقة",
+      "submit": "التسجيل",
+      "already_have_account": "هل لديك حساب بالفعل؟",
+      "login": "تسجيل الدخول",
+      "registration_successful": "التسجيل ناجح!",
+      "check_email": "تم إنشاء حسابك بنجاح. يرجى التحقق من بريدك الإلكتروني لتفعيل حسابك.",
+      "registration_error": "حدث خطأ أثناء التسجيل",
+      "enter_username_or_email": "يرجى إدخال إما اسم المستخدم أو البريد الإلكتروني.",
+      "account_created_no_email": "تم إنشاء حسابك بنجاح. يمكنك الآن تسجيل الدخول باستخدام اسم المستخدم وكلمة المرور."
+    },
+    "ForgotPassword": {
+      "check_email": "تحقق من بريدك الإلكتروني",
+      "email_instructions": "لقد أرسلنا لك بريدًا إلكترونيًا يحتوي على تعليمات لإعادة تعيين كلمة المرور الخاصة بك. يرجى التحقق من بريدك الإلكتروني.",
+      "title": "نسيت كلمة المرور",
+      "email_label": "البريد الإلكتروني",
+      "email_placeholder": "أدخل بريدك الإلكتروني",
+      "submit_button": "إعادة تعيين كلمة المرور",
+      "login_link": "تسجيل الدخول",
+      "register_link": "إنشاء حساب"
+    },
+    "ActivateAccount": {
+      "success_message": "تم تفعيل الحساب بنجاح.",
+      "account_already_active": "حسابك مفعل بالفعل. يمكنك الآن الاستمرار في استخدام حسابك.",
+      "redirect_to_login": "سيتم تحويلك إلى صفحة تسجيل الدخول خلال لحظات...",
+      "failure_message": "فشل في تفعيل الحساب.",
+      "failure_description": "حدث خطأ أثناء تفعيل الحساب. يرجى المحاولة مرة أخرى.",
+      "retry_button": "حاول مرة أخرى",
+      "already_active_message": "حسابك مفعل بالفعل."
+    },
+    "ResetPassword": {
+      "success_message": "تمت إعادة تعيين كلمة المرور بنجاح",
+      "success_description": "تم إعادة تعيين كلمة المرور الخاصة بك بنجاح. يمكنك الآن تسجيل الدخول باستخدام كلمة المرور الجديدة.",
+      "new_password": "كلمة المرور الجديدة",
+      "confirm_password": "تأكيد كلمة المرور",
+      "password_mismatch": "كلمتا المرور غير متطابقتين",
+      "invalid_token": "رمز التحقق غير صالح",
+      "submit_button": "إعادة تعيين كلمة المرور",
+      "loading": "جاري المعالجة...",
+      "login_link": "تسجيل الدخول",
+      "register_link": "إنشاء حساب",
+      "error_message": "حدث خطأ أثناء إعادة تعيين كلمة المرور"
+    }
+  },
+  "ProfileModal": {
+    "profile_title": "الملف الشخصي",
+    "name_label": "الاسم",
+    "email_label": "البريد الإلكتروني",
+    "username_label": "اسم المستخدم",
+    "account_creation_date": "تاريخ إنشاء الحساب",
+    "save_changes": "حفظ التغييرات",
+    "cancel": "إغلاق",
+    "activation_warning": "هذا الحساب غير مفعل",
+    "resend_activation": "إعادة إرسال بريد التفعيل",
+    "delete_account": "حذف الحساب"
+  },
+  "PublicQuiz": {
+    "no_title": "عنوان غير متوفر",
+    "description_label": "الوصف",
+    "add_to_library": "أضف إلى المكتبة",
+    "unknown_user": "مستخدم مجهول",
+    "no_quizzes": "لم يتم العثور على اختبارات.",
+    "previous": "السابق",
+    "next": "التالي",
+    "page": "صفحة",
+    "already_added": "تمت إضافته بالفعل"
+  },
+  "Footer": {
+    "copyright": "جميع الحقوق محفوظة"
+  },
+  "Error": {
+    "page_not_found": "الصفحة غير موجودة",
+    "description": "عذرًا، الصفحة التي تبحث عنها غير موجودة.",
+    "back_to_home": "العودة إلى الصفحة الرئيسية"
+  },
+  "Unauthorized": {
+    "title": "٤٠٣",
+    "unauthorized": "دخول غير مصرح به",
+    "description": "ليس لديك إذن لعرض هذه الصفحة."
+  },
+  "ReduxMessage": {
+    "Library": {
+      "fetchUserLibrary": "فشل في جلب مكتبة المستخدم",
+      "addPublicQuizToLibrary": "فشل في إضافة اختبار عام إلى المكتبة",
+      "addQuizToLibraryUsingToken": "فشل في إضافة اختبار إلى المكتبة باستخدام الرمز",
+      "removeQuizFromLibrary": "فشل في إزالة الاختبار من المكتبة",
+      "shareQuizWithCandidate": "فشل في مشاركة الاختبار مع المرشح"
+    },
+    "Question": {
+      "fetchQuestionsByQuizId": "فشل في جلب الأسئلة",
+      "fetchQuestionById": "فشل في جلب السؤال",
+      "addQuestion": "فشل في إضافة السؤال",
+      "deleteQuestion": "فشل في حذف السؤال",
+      "updateQuestionInQuiz": "فشل في تحديث السؤال",
+      "fetchQuizFromLibrary": "فشل في جلب الاختبار من المكتبة"
+    },
+    "Quiz": {
+      "fetchQuizzes": "فشل في جلب الاختبارات",
+      "fetchUserQuizzes": "فشل في جلب اختبارات المستخدم",
+      "fetchQuizById": "فشل في جلب الاختبار",
+      "createQuiz": "فشل في إنشاء اختبار",
+      "deleteQuiz": "فشل في حذف الاختبار",
+      "updateQuiz": "فشل في تحديث الاختبار"
+    },
+    "Score": {
+      "fetchUserScores": "فشل في جلب نتائج المستخدم",
+      "fetchSingleScore": "فشل في جلب تفاصيل النتيجة",
+      "fetchExaminerScores": "فشل في جلب نتائج الممتحن",
+      "noScoresAvailable": "لا توجد نتائج متاحة",
+      "submitQuiz": "فشل في تقديم الاختبار",
+      "deleteScore": "فشل في حذف النتيجة"
+    },
+    "User": {
+      "loginFailed": "فشل تسجيل الدخول",
+      "logoutFailed": "فشل تسجيل الخروج",
+      "forgetPasswordFailed": "فشل إرسال رابط إعادة تعيين كلمة المرور",
+      "resetPasswordFailed": "فشل إعادة تعيين كلمة المرور",
+      "registerFailed": "فشل التسجيل",
+      "activateAccountFailed": "فشل تفعيل الحساب",
+      "updateUserFailed": "فشل تحديث معلومات المستخدم",
+      "resendActivationEmailFailed": "فشل إعادة إرسال بريد التفعيل",
+      "deleteAccountFailed": "فشل حذف الحساب",
+      "getUserDataFailed": "فشل جلب بيانات المستخدم"
+    }
+  },
+  "AddLibrary": {
+    "addingQuizToLibrary": "جاري إضافة الاختبار إلى مكتبتك...",
+    "invalidLink": "رابط غير صالح",
+    "successPublicQuiz": "تم إضافة الاختبار العام إلى مكتبتك بنجاح",
+    "successPrivateQuiz": "تم إضافة الاختبار الخاص إلى مكتبتك بنجاح",
+    "errorAddingQuiz": "حدث خطأ أثناء إضافة الاختبار إلى مكتبتك",
+    "errorPrefix": "خطأ:"
+  },
+  "Library": {
+    "loadingError": "حدث خطأ أثناء تحميل المكتبة.",
+    "noQuizzes": "لا توجد اختبارات في المكتبة حالياً.",
+    "libraryTitle": "المكتبة والاختبارات",
+    "createdBy": "تم الإنشاء بواسطة:",
+    "anonymousUser": "مستخدم مجهول",
+    "questionsCount": "عدد الأسئلة:",
+    "score": "النتيجة:",
+    "noScore": "لم يتم تقديم الامتحان بعد",
+    "noQuestions": "لا توجد أسئلة",
+    "submitted": "تم التقديم",
+    "quizInProgress": "الاختبار جارٍ",
+    "startQuiz": "بدء الاختبار",
+    "removeQuiz": "إزالة الاختبار",
+    "viewScore": "عرض النتيجة"
+  },
+  "Quiz": {
+    "loadingError": "حدث خطأ أثناء تحميل الاختبارات.",
+    "title": "الاختبارات الخاصة بالمستخدم",
+    "noQuizzesFound": "لم يتم العثور على اختبارات.",
+    "numberOfQuestions": "عدد الأسئلة:",
+    "description": "وصف الاختبار:",
+    "time": "مدة الاختبار:",
+    "question": "سؤال",
+    "minutes": "دقيقة",
+    "addQuiz": "إضافة اختبار",
+    "editQuiz": "تعديل الاختبار",
+    "shareQuiz": "مشاركة الاختبار",
+    "deleteQuiz": "حذف الاختبار"
+  },
+  "QuizDetailsModal": {
+    "title": "تفاصيل الاختبار",
+    "labelTitle": "العنوان:",
+    "labelDescription": "الوصف:",
+    "labelTime": "الوقت:",
+    "labelQuestionsCount": "عدد الأسئلة:",
+    "labelCreatedAt": "تاريخ الإنشاء:",
+    "minutes": "دقيقة",
+    "questions": "أسئلة",
+    "addQuiz": "إضافة...",
+    "quizAdded": "تمت الإضافة",
+    "addQuizTooltip": "اضافة الإختبار للمكتبة",
+    "closeButton": "إغلاق"
+  },
+  "QuizQuestions": {
+    "loadingError": "حدث خطأ أثناء تحميل الأسئلة.",
+    "quizTitle": "الاختبار",
+    "noQuestionsFound": "لم يتم العثور على أسئلة لهذا الاختبار.",
+    "noOptionsAvailable": "لا توجد خيارات متاحة لهذا السؤال.",
+    "submitAnswers": "إرسال الإجابات",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "Score": {
+    "examinerQuizResults": "نتائج اختبارات الفاحص",
+    "noResultsAvailable": "لا توجد نتائج متاحة",
+    "score": "النتيجة",
+    "totalQuestions": "إجمالي الأسئلة",
+    "correctAnswers": "الإجابات الصحيحة",
+    "username": "المستخدم"
+  },
+  "ShowScore": {
+    "loading": "جاري تحميل تفاصيل النتيجة...",
+    "error": "لم يتم العثور على النتيجة",
+    "title": "تفاصيل النتيجة",
+    "quizTitle": "اختبار:",
+    "score": "النتيجة:",
+    "questionsAndAnswers": "الأسئلة وإجاباتك",
+    "question": "سؤال",
+    "correctAnswer": "إجابة صحيحة",
+    "wrongAnswer": "إجابة خاطئة"
+  },
+  "ShowMyScore": {
+    "loading": "جاري تحميل تفاصيل النتيجة...",
+    "error": "لم يتم العثور على النتيجة",
+    "title": "تفاصيل النتيجة",
+    "quizTitle": "اختبار:",
+    "score": "النتيجة:",
+    "questionsAndAnswers": "الأسئلة وإجاباتك",
+    "question": "سؤال",
+    "correctAnswer": "إجابة صحيحة",
+    "wrongAnswer": "إجابة خاطئة"
+  },
+  "Modals": {
+    "DeleteLibraryModal": {
+      "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا الاختبار من مكتبتك؟",
+      "confirmButton": "نعم، أنا متأكد",
+      "cancelButton": "لا، إلغاء"
+    },
+    "QuizStartModal": {
+      "startQuizTitle": "بدء الامتحان: {{quizTitle}}",
+      "confirmationMessage": "هل أنت مستعد لبدء الامتحان؟ تأكد من مراجعة جميع التعليمات قبل المتابعة.",
+      "cancelButton": "إلغاء",
+      "confirmButton": "أبدأ الآن"
+    },
+    "DeleteQuestionModal": {
+      "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا السؤال",
+      "confirmButton": "نعم، أنا متأكد",
+      "cancelButton": "لا، إلغاء"
+    },
+    "EditQuestionDetailModal": {
+      "title": "تعديل السؤال",
+      "questionLabel": "السؤال",
+      "optionsLabel": "الخيارات",
+      "correctOptionLabel": "اختر الإجابة الصحيحة",
+      "correctOptionValue": "الخيار {{optionNumber}}",
+      "updateButton": "تحديث السؤال",
+      "closeButton": "إغلاق"
+    },
+    "EditQuestionsModal": {
+      "editQuizTitle": "تعديل الاختبار: {{quizTitle}}",
+      "loadingError": "حدث خطأ أثناء تحميل الأسئلة: {{error}}",
+      "noQuestionsFound": "لم يتم العثور على أسئلة لهذا الاختبار",
+      "addNewQuestionTitle": "إضافة سؤال جديد",
+      "addOptionsTitle": "إضافة الخيارات",
+      "chooseCorrectAnswerTitle": "اختر الإجابة الصحيحة",
+      "correctOption": "الخيار {{optionNumber}}",
+      "addQuestionButton": "إضافة السؤال",
+      "cancelButton": "إلغاء",
+      "deleteButton": "حذف"
+    },
+    "CreateQuizModal": {
+      "createNewQuiz": "إنشاء اختبار جديد",
+      "quizTitleLabel": "عنوان الاختبار",
+      "quizDescriptionLabel": "وصف الاختبار",
+      "quizTimeLabel": "مدة الاختبار (بالدقائق)",
+      "quizVisibilityLabel": "نوع الامتحان",
+      "publicOption": "عام",
+      "privateOption": "خاص",
+      "createButton": "إنشاء",
+      "cancelButton": "إلغاء",
+      "error": {
+        "quizTimeRequired": "مدة الاختبار مطلوبة ويجب أن تكون رقمًا أكبر من الصفر",
+        "quizCreationFailed": "فشل إنشاء الاختبار. حاول مرة اخرى."
+      },
+      "decreaseTime": "إنقاص",
+      "increaseTime": "زيادة"
+    },
+    "DeleteQuizModal": {
+      "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا الاختبار",
+      "warning": "تحذير:",
+      "warningMessage": "سيتم حذف جميع الدرجات المتعلقة بهذا الإختبار. لا يمكن استعادة هذه المعلومات بعد الحذف",
+      "confirmButton": "نعم، أنا متأكد",
+      "cancelButton": "لا، إلغاء"
+    },
+    "EditQuizModal": {
+      "title": "تعديل معلومات الاختبار",
+      "errorMessage": "حدث خطأ أثناء تحديث الاختبار. حاول مرة أخرى.",
+      "quizTitleLabel": "عنوان الاختبار",
+      "quizTitlePlaceholder": "أدخل عنوان الاختبار",
+      "quizDescriptionLabel": "وصف الاختبار",
+      "quizDescriptionPlaceholder": "أدخل وصفًا للاختبار...",
+      "quizTimeLabel": "الوقت المسموح (بالدقائق)",
+      "quizTimePlaceholder": "الوقت المسموح للاختبار (بالدقائق)",
+      "timeInputHint": "قم بإدخال الوقت بالعدد الكلي للدقائق التي يمكن خلالها للطلاب إكمال الاختبار",
+      "visibilityLabel": "نوع الامتحان",
+      "visibilityPublic": "عام",
+      "visibilityPrivate": "خاص",
+      "saveChangesButton": "حفظ التغييرات",
+      "cancelButton": "إلغاء"
+    },
+    "ShareLinkModal": {
+      "title": "مشاركة رابط الاختبار",
+      "description": "إليك الرابط القابل للمشاركة للاختبار",
+      "copyButton": "نسخ الرابط",
+      "copiedButton": "تم النسخ",
+      "closeButton": "إغلاق"
+    },
+    "DeleteScoreModal": {
+      "confirmationMessage": "هل أنت متأكد أنك تريد حذف درجة الإختبار؟",
+      "confirmButton": "نعم، أنا متأكد",
+      "cancelButton": "لا، إلغاء"
+    },
+    "DeleteAccountModal": {
+      "title": "تأكيد حذف الحساب",
+      "confirmationMessage": "هل أنت متأكد من رغبتك في حذف حسابك؟ هذا الإجراء لا يمكن التراجع عنه.",
+      "warningMessage": "تحذير: سيتم حذف جميع البيانات المتعلقة بهذا الحساب، بما في ذلك الاختبارات والدرجات. لا يمكن استعادة هذه المعلومات بعد الحذف.",
+      "deleteButton": "حذف الحساب",
+      "cancelButton": "إلغاء"
+    }
+  }
+}

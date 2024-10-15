@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DINNextLTArabic";
+  src: url("../assets/fonts/DDINNextLTArabic-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DINNextLTArabic";
+  src: url("../assets/fonts/DINNextLTArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer base {
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    line-height: calc(1em + 0.5rem);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: "DINNextLTArabic", sans-serif;
+    direction: rtl;
+    text-align: right;
+    background-color: #0d1f29;
+  }
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+  }
+}
