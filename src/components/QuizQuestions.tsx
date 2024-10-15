@@ -177,9 +177,14 @@ const QuizQuestions: React.FC = () => {
           <div className="flex items-center justify-between w-full">
             {isRTL ? (
               <>
-                <h2 className="text-xl xs:text-2xl font-bold text-secondary">
+                <h2
+                  className={`text-xl xs:text-2xl font-bold text-secondary ${
+                    isRTL ? "text-right" : "text-left"
+                  }`}
+                >
                   {quiz?.title}
                 </h2>
+
                 {/* Timer Display */}
                 <CountdownCircleTimer
                   isPlaying={isQuizInProgress}
@@ -263,7 +268,11 @@ const QuizQuestions: React.FC = () => {
                     );
                   }}
                 </CountdownCircleTimer>
-                <h2 className="text-xl xs:text-2xl font-bold text-secondary">
+                <h2
+                  className={`text-xl xs:text-2xl font-bold text-secondary ${
+                    isRTL ? "text-right" : "text-left"
+                  }`}
+                >
                   {quiz?.title}
                 </h2>
               </>
