@@ -19,7 +19,7 @@ const Contact = () => {
         <a
           type="button"
           target="_blank"
-          href="info@digitaltests.org"
+          href="mailto:info@digitaltests.org"
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 font-semibold text-black transition-all duration-200 bg-thirdColor rounded-lg hover:bg-thirdColorLighter focus:bg-thirdColorLighter"
         >
