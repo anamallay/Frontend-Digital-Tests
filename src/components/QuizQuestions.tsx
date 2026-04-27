@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -28,6 +28,207 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// ── Memoized children ────────────────────────────────────────────────
+//
+// QuizQuestions re-renders ~once a second to drive the countdown UI
+// (see the `setTick` comment in the parent). Without memoization, every
+// tick re-renders the question card and every option button — pure DOM
+// churn since neither depends on time.
+//
+// Each child re-renders only when its own props change (next question,
+// answer selection, submit-in-flight). Handlers are stabilized via
+// `useCallback` in the parent so the `React.memo` shallow compare
+// actually short-circuits on tick.
+
+interface QuestionDisplayProps {
+  question: QuestionType;
+  /** 1-based index for the visible badge ("3" = the third question). */
+  questionNumber: number;
+  /** Index of the selected option in `question.options`, or -1 if none. */
+  selectedAnswer: number;
+  onSelect: (optionIndex: number) => void;
+  /** True while submit is in-flight — disables the option buttons. */
+  disabled: boolean;
+}
+
+const QuestionDisplay: React.FC<QuestionDisplayProps> = React.memo(
+  ({ question, questionNumber, selectedAnswer, onSelect, disabled }) => {
+    const { t } = useTranslation();
+    return (
+      <Card className="border-border">
+        <CardContent className="p-6 sm:p-8">
+          {/* Question */}
+          <div className="mb-6 flex items-start gap-3">
+            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-foreground">
+              {questionNumber}
+            </span>
+            <h2 className="text-base font-medium leading-relaxed text-foreground sm:text-lg">
+              {question.question}
+            </h2>
+          </div>
+
+          {/* Options */}
+          {question.options && question.options.length > 0 ? (
+            <div
+              role="radiogroup"
+              aria-label={question.question}
+              className="space-y-2.5"
+            >
+              {question.options.map((option, optionIndex) => {
+                const isSelected = selectedAnswer === optionIndex;
+                return (
+                  <button
+                    key={optionIndex}
+                    type="button"
+                    role="radio"
+                    aria-checked={isSelected}
+                    onClick={() => onSelect(optionIndex)}
+                    disabled={disabled}
+                    className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-start transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
+                      isSelected
+                        ? "border-primary bg-primary/5 text-foreground shadow-sm"
+                        : "border-border bg-surface text-foreground hover:border-primary/40 hover:bg-accent/50"
+                    }`}
+                  >
+                    <span
+                      className={`relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                        isSelected ? "border-primary" : "border-border"
+                      }`}
+                    >
+                      {isSelected && (
+                        <span className="h-2.5 w-2.5 rounded-full bg-primary" />
+                      )}
+                    </span>
+                    <span className="flex-1 text-sm sm:text-base">
+                      {option}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
+              <CircleAlert className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{t("QuizQuestions.noOptionsAvailable")}</span>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    );
+  }
+);
+QuestionDisplay.displayName = "QuestionDisplay";
+
+interface NavigationFooterProps {
+  /** Zero-based index of the current question. */
+  currentQuestion: number;
+  /** Total number of questions in the quiz. */
+  totalQuestions: number;
+  /** Count of questions the user has already answered (selected option). */
+  answeredCount: number;
+  /** True while the submit thunk is in-flight. */
+  isSubmitting: boolean;
+  onPrevious: () => void;
+  onNext: () => void;
+  onSubmit: () => void;
+}
+
+const NavigationFooter: React.FC<NavigationFooterProps> = React.memo(
+  ({
+    currentQuestion,
+    totalQuestions,
+    answeredCount,
+    isSubmitting,
+    onPrevious,
+    onNext,
+    onSubmit,
+  }) => {
+    const { t, i18n } = useTranslation();
+    const isRTL = i18n.language === "ar";
+    const isFirstQuestion = currentQuestion === 0;
+    const isLastQuestion = currentQuestion === totalQuestions - 1;
+    const canShowEarlySubmit = !isLastQuestion && answeredCount > 0;
+
+    return (
+      <>
+        <div className="mt-6 flex items-center justify-between gap-3">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onPrevious}
+            disabled={isFirstQuestion || isSubmitting}
+          >
+            <ArrowLeft
+              className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
+              aria-hidden="true"
+            />
+            {t("QuizQuestions.previous")}
+          </Button>
+
+          <div className="flex items-center gap-2">
+            {isLastQuestion ? (
+              <Button
+                type="button"
+                onClick={onSubmit}
+                disabled={isSubmitting}
+                className="min-w-[140px]"
+              >
+                {isSubmitting ? (
+                  <Loader2
+                    className={`h-4 w-4 animate-spin ${isRTL ? "ml-2" : "mr-2"}`}
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <Flag
+                    className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`}
+                    aria-hidden="true"
+                  />
+                )}
+                {t("QuizQuestions.submitAnswers")}
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                onClick={onNext}
+                disabled={isSubmitting}
+                className="min-w-[120px]"
+              >
+                {t("QuizQuestions.next")}
+                <ArrowRight
+                  className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                  aria-hidden="true"
+                />
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {canShowEarlySubmit && (
+          <div className="mt-6 flex justify-center">
+            <button
+              type="button"
+              onClick={onSubmit}
+              disabled={isSubmitting}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-muted-foreground"
+            >
+              {isSubmitting ? (
+                <Loader2
+                  className="h-3.5 w-3.5 animate-spin"
+                  aria-hidden="true"
+                />
+              ) : (
+                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              )}
+              {t("QuizQuestions.submitAnswers")}
+            </button>
+          </div>
+        )}
+      </>
+    );
+  }
+);
+NavigationFooter.displayName = "NavigationFooter";
+
 const QuizQuestions: React.FC = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
@@ -36,17 +237,37 @@ const QuizQuestions: React.FC = () => {
   const store = useStore<RootState>();
   const navigate = useNavigate();
 
-  const { library } = useSelector((state: RootState) => state.library);
-  const { questions, isLoading, error } = useSelector(
-    (state: RootState) => state.questions
+  // Narrow per-field selectors. The parent re-renders ~once a second
+  // during a live quiz (see the `setTick` driver below). Reading whole
+  // slices would also re-render on every unrelated mutation; per-field
+  // selectors short-circuit when the read field is reference-stable.
+  // Especially load-bearing for the planned timer-arch refactor (lift
+  // tick into Redux) — narrow selectors mean QuizQuestions won't
+  // re-render every tick from a future `elapsedSeconds` field unless
+  // it actually reads it.
+  const library = useSelector((state: RootState) => state.library.library);
+  const questions = useSelector(
+    (state: RootState) => state.questions.questions
   );
-  const {
-    isQuizInProgress,
-    currentQuizId,
-    answers,
-    currentQuestion,
-    isSubmitting,
-  } = useSelector((state: RootState) => state.quizProgress);
+  const isLoading = useSelector(
+    (state: RootState) => state.questions.isLoading
+  );
+  const error = useSelector((state: RootState) => state.questions.error);
+  const isQuizInProgress = useSelector(
+    (state: RootState) => state.quizProgress.isQuizInProgress
+  );
+  const currentQuizId = useSelector(
+    (state: RootState) => state.quizProgress.currentQuizId
+  );
+  const answers = useSelector(
+    (state: RootState) => state.quizProgress.answers
+  );
+  const currentQuestion = useSelector(
+    (state: RootState) => state.quizProgress.currentQuestion
+  );
+  const isSubmitting = useSelector(
+    (state: RootState) => state.quizProgress.isSubmitting
+  );
   const remainingTime = useSelector(selectRemainingTime);
 
   const quiz = library.find((q) => q._id === quizId);
@@ -131,13 +352,20 @@ const QuizQuestions: React.FC = () => {
     wasInProgress.current = isQuizInProgress;
   }, [isQuizInProgress, navigate]);
 
-  const handleAnswerChange = (answerIndex: number) => {
-    dispatch(
-      setAnswer({ questionIndex: currentQuestion, optionIndex: answerIndex })
-    );
-  };
+  // Handlers are useCallback'd so the memoized children
+  // (`QuestionDisplay`, `NavigationFooter`) skip their per-tick re-render.
+  // Without this, every parent re-render would create fresh function
+  // references, defeating React.memo's shallow prop compare.
+  const handleAnswerChange = useCallback(
+    (answerIndex: number) => {
+      dispatch(
+        setAnswer({ questionIndex: currentQuestion, optionIndex: answerIndex })
+      );
+    },
+    [dispatch, currentQuestion]
+  );
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     // Navigation happens in the `isQuizInProgress` transition-watcher effect
     // above, so both manual and auto-submit paths navigate through the
     // same code path.
@@ -146,14 +374,19 @@ const QuizQuestions: React.FC = () => {
     // so the button's `disabled` state below is purely for UX feedback —
     // even if it somehow fired twice, the second call would no-op.
     dispatch(submitAndEndQuiz());
-  };
+  }, [dispatch]);
 
-  const handleNext = () =>
-    dispatch(
-      setCurrentQuestion(Math.min(currentQuestion + 1, questions.length - 1))
-    );
-  const handlePrevious = () =>
-    dispatch(setCurrentQuestion(Math.max(currentQuestion - 1, 0)));
+  const handleNext = useCallback(
+    () =>
+      dispatch(
+        setCurrentQuestion(Math.min(currentQuestion + 1, questions.length - 1))
+      ),
+    [dispatch, currentQuestion, questions.length]
+  );
+  const handlePrevious = useCallback(
+    () => dispatch(setCurrentQuestion(Math.max(currentQuestion - 1, 0))),
+    [dispatch, currentQuestion]
+  );
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
@@ -267,135 +500,23 @@ const QuizQuestions: React.FC = () => {
         />
       </div>
 
-      {/* Question card */}
-      <Card className="border-border">
-        <CardContent className="p-6 sm:p-8">
-          {/* Question */}
-          <div className="mb-6 flex items-start gap-3">
-            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-foreground">
-              {currentQuestion + 1}
-            </span>
-            <h2 className="text-base font-medium leading-relaxed text-foreground sm:text-lg">
-              {question.question}
-            </h2>
-          </div>
+      <QuestionDisplay
+        question={question}
+        questionNumber={currentQuestion + 1}
+        selectedAnswer={answers[currentQuestion] ?? -1}
+        onSelect={handleAnswerChange}
+        disabled={isSubmitting}
+      />
 
-          {/* Options */}
-          {question.options && question.options.length > 0 ? (
-            <div
-              role="radiogroup"
-              aria-label={question.question}
-              className="space-y-2.5"
-            >
-              {question.options.map((option, optionIndex) => {
-                const isSelected = answers[currentQuestion] === optionIndex;
-                return (
-                  <button
-                    key={optionIndex}
-                    type="button"
-                    role="radio"
-                    aria-checked={isSelected}
-                    onClick={() => handleAnswerChange(optionIndex)}
-                    disabled={isSubmitting}
-                    className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-start transition-all disabled:opacity-60 disabled:cursor-not-allowed ${
-                      isSelected
-                        ? "border-primary bg-primary/5 text-foreground shadow-sm"
-                        : "border-border bg-surface text-foreground hover:border-primary/40 hover:bg-accent/50"
-                    }`}
-                  >
-                    <span
-                      className={`relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                        isSelected ? "border-primary" : "border-border"
-                      }`}
-                    >
-                      {isSelected && (
-                        <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-                      )}
-                    </span>
-                    <span className="flex-1 text-sm sm:text-base">
-                      {option}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
-              <CircleAlert className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>{t("QuizQuestions.noOptionsAvailable")}</span>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Footer navigation */}
-      <div className="mt-6 flex items-center justify-between gap-3">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handlePrevious}
-          disabled={currentQuestion === 0 || isSubmitting}
-        >
-          <ArrowLeft
-            className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
-            aria-hidden="true"
-          />
-          {t("QuizQuestions.previous")}
-        </Button>
-
-        <div className="flex items-center gap-2">
-          {currentQuestion === questions.length - 1 ? (
-            <Button
-              type="button"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-              className="min-w-[140px]"
-            >
-              {isSubmitting ? (
-                <Loader2
-                  className={`h-4 w-4 animate-spin ${isRTL ? "ml-2" : "mr-2"}`}
-                  aria-hidden="true"
-                />
-              ) : (
-                <Flag className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
-              )}
-              {t("QuizQuestions.submitAnswers")}
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleNext}
-              disabled={isSubmitting}
-              className="min-w-[120px]"
-            >
-              {t("QuizQuestions.next")}
-              <ArrowRight
-                className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
-                aria-hidden="true"
-              />
-            </Button>
-          )}
-        </div>
-      </div>
-
-      {/* Early submit — discreet, always available after first answer */}
-      {currentQuestion !== questions.length - 1 && answeredCount > 0 && (
-        <div className="mt-6 flex justify-center">
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-muted-foreground"
-          >
-            {isSubmitting ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-            ) : (
-              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-            )}
-            {t("QuizQuestions.submitAnswers")}
-          </button>
-        </div>
-      )}
+      <NavigationFooter
+        currentQuestion={currentQuestion}
+        totalQuestions={questions.length}
+        answeredCount={answeredCount}
+        isSubmitting={isSubmitting}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        onSubmit={handleSubmit}
+      />
     </section>
   );
 };

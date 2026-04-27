@@ -12,8 +12,8 @@ A production-grade React + TypeScript web application for creating, sharing, and
 
 > ```html
 > <p align="center">
->   <img src="/Frontend-Digital-Tests/public/image/one.png.png" width="48%" alt="English LTR view" />
->   <img src="/Frontend-Digital-Tests/public/image/two.png" width="48%" alt="Arabic RTL view" />
+>   <img src="/public/image/one.png.png" width="48%" alt="English LTR view" />
+>   <img src="/public/image/two.png" width="48%" alt="Arabic RTL view" />
 > </p>
 > ```
 

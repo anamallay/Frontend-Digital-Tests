@@ -29,8 +29,17 @@ const Score = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const { examinerScores, isLoadingExaminer, errorExaminer } = useSelector(
-    (state: RootState) => state.scores
+  // Narrow per-field selectors — scoresSlice has 10 fields; this component
+  // only cares about the examiner trio. Splitting prevents re-renders from
+  // mutations to userScores / singleScore / etc.
+  const examinerScores = useSelector(
+    (state: RootState) => state.scores.examinerScores
+  );
+  const isLoadingExaminer = useSelector(
+    (state: RootState) => state.scores.isLoadingExaminer
+  );
+  const errorExaminer = useSelector(
+    (state: RootState) => state.scores.errorExaminer
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);

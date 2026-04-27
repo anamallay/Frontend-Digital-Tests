@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import {
   Plus,
   Pen,
@@ -24,6 +23,7 @@ import {
 import { shareQuizWithCandidate } from "../reducer/action/librariesSlice";
 import { QuizType } from "../types/QuizType";
 
+import QuizCard from "./QuizCard";
 import EditQuestionsModal from "./Modals/Questions/EditQuestionsModal";
 import DeleteQuizModal from "./Modals/Quizzes/DeleteQuizModal";
 import CreateQuizModal from "./Modals/Quizzes/CreateQuizModal";
@@ -45,8 +45,11 @@ const Quiz: React.FC = () => {
   const isRTL = i18n.language === "ar";
   const dispatch = useDispatch<AppDispatch>();
 
-  const { quizzes, isLoading } = useSelector(
-    (state: RootState) => state.quizzes
+  // Narrow per-field selectors — see #18 in the improvement plan. Each
+  // `useSelector` re-renders only when its specific field changes.
+  const quizzes = useSelector((state: RootState) => state.quizzes.quizzes);
+  const isLoading = useSelector(
+    (state: RootState) => state.quizzes.isLoading
   );
   const isSharing = useSelector(
     (state: RootState) => state.library.isLoading
@@ -186,135 +189,113 @@ const Quiz: React.FC = () => {
               const questionsCount = quiz.questions?.length ?? 0;
 
               return (
-                <motion.div
+                <QuizCard
                   key={quiz._id}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: Math.min(idx * 0.04, 0.3),
-                    ease: "easeOut",
-                  }}
-                >
-                  <Card className="group relative h-full border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
-                    <CardContent className="flex h-full flex-col p-6">
-                      {/* Top row: visibility + share icon at corner */}
-                      <div className="mb-3 flex items-center justify-between gap-2">
-                        <span
-                          className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
-                            isPublic
-                              ? "bg-primary/10 text-primary"
-                              : "bg-muted text-muted-foreground"
-                          }`}
+                  quiz={quiz}
+                  index={idx}
+                  showDescription
+                  topBar={
+                    <>
+                      <span
+                        className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
+                          isPublic
+                            ? "bg-primary/10 text-primary"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {isPublic ? (
+                          <Globe className="h-3 w-3" aria-hidden="true" />
+                        ) : (
+                          <Lock className="h-3 w-3" aria-hidden="true" />
+                        )}
+                        {isPublic
+                          ? t("Modals.CreateQuizModal.publicOption")
+                          : t("Modals.CreateQuizModal.privateOption")}
+                      </span>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            onClick={() => handleShare(quiz)}
+                            disabled={isSharing}
+                            className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
+                            aria-label={t("Quiz.shareQuiz")}
+                          >
+                            <Share2 className="h-4 w-4" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                          {t("Quiz.shareQuiz")}
+                        </TooltipContent>
+                      </Tooltip>
+                    </>
+                  }
+                  titleAccessory={
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => handleEditInfo(quiz)}
+                          className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                          aria-label={t("Quiz.editQuiz")}
                         >
-                          {isPublic ? (
-                            <Globe className="h-3 w-3" aria-hidden="true" />
-                          ) : (
-                            <Lock className="h-3 w-3" aria-hidden="true" />
-                          )}
-                          {isPublic
-                            ? t("Modals.CreateQuizModal.publicOption")
-                            : t("Modals.CreateQuizModal.privateOption")}
+                          <Pen className="h-3.5 w-3.5" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        {t("Quiz.editQuiz")}
+                      </TooltipContent>
+                    </Tooltip>
+                  }
+                  meta={
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5">
+                        <HelpCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span className="font-medium text-foreground">
+                          {questionsCount}
                         </span>
-
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button
-                              onClick={() => handleShare(quiz)}
-                              disabled={isSharing}
-                              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
-                              aria-label={t("Quiz.shareQuiz")}
-                            >
-                              <Share2 className="h-4 w-4" />
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            {t("Quiz.shareQuiz")}
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-
-                      {/* Title + edit-info pen */}
-                      <div className="mb-2 flex items-start justify-between gap-2">
-                        <h2 className="line-clamp-2 text-lg font-semibold text-foreground">
-                          {quiz.title}
-                        </h2>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button
-                              onClick={() => handleEditInfo(quiz)}
-                              className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                              aria-label={t("Quiz.editQuiz")}
-                            >
-                              <Pen className="h-3.5 w-3.5" />
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            {t("Quiz.editQuiz")}
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-
-                      {/* Description */}
-                      {quiz.description && (
-                        <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                          {quiz.description}
-                        </p>
-                      )}
-
-                      {/* Meta chips */}
-                      <div className="mb-5 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5">
-                          <HelpCircle className="h-3.5 w-3.5" aria-hidden="true" />
-                          <span className="font-medium text-foreground">
-                            {questionsCount}
-                          </span>
-                          <span>{t("Quiz.question")}</span>
+                        <span>{t("Quiz.question")}</span>
+                      </span>
+                      <span className="h-3 w-px bg-border" />
+                      <span className="inline-flex items-center gap-1.5">
+                        <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span className="font-medium text-foreground">
+                          {quiz.time}
                         </span>
-                        <span className="h-3 w-px bg-border" />
-                        <span className="inline-flex items-center gap-1.5">
-                          <Clock className="h-3.5 w-3.5" aria-hidden="true" />
-                          <span className="font-medium text-foreground">
-                            {quiz.time}
-                          </span>
-                          <span>{t("Quiz.minutes")}</span>
-                        </span>
-                      </div>
+                        <span>{t("Quiz.minutes")}</span>
+                      </span>
+                    </div>
+                  }
+                  footer={
+                    <>
+                      <Button
+                        onClick={() => handleEditQuestions(quiz)}
+                        variant="outline"
+                        className="flex-1"
+                      >
+                        <ListChecks
+                          className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`}
+                          aria-hidden="true"
+                        />
+                        {t("Modals.EditQuestionsModal.headerSimple")}
+                      </Button>
 
-                      {/* Footer actions */}
-                      <div className="mt-auto flex items-center gap-2 border-t border-border pt-4">
-                        <Button
-                          onClick={() => handleEditQuestions(quiz)}
-                          variant="outline"
-                          className="flex-1"
-                        >
-                          <ListChecks
-                            className={`h-4 w-4 ${
-                              isRTL ? "ml-2" : "mr-2"
-                            }`}
-                            aria-hidden="true"
-                          />
-                          {t("Modals.EditQuestionsModal.headerSimple")}
-                        </Button>
-
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button
-                              onClick={() => handleDelete(quiz._id)}
-                              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-destructive/40 hover:bg-destructive/10 hover:text-destructive"
-                              aria-label={t("Quiz.deleteQuiz")}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent side="top">
-                            {t("Quiz.deleteQuiz")}
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            onClick={() => handleDelete(quiz._id)}
+                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-destructive/40 hover:bg-destructive/10 hover:text-destructive"
+                            aria-label={t("Quiz.deleteQuiz")}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                          {t("Quiz.deleteQuiz")}
+                        </TooltipContent>
+                      </Tooltip>
+                    </>
+                  }
+                />
               );
             })}
           </div>
