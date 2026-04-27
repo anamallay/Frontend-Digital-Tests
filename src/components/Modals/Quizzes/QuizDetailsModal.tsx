@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { QuizType } from "../../../types/QuizType";
+import { isPopulatedUser } from "../../../types/UserType";
 import { AppDispatch, RootState } from "../../../reducer/store/store";
 import {
   shareQuizWithCandidate,
@@ -119,12 +120,12 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
     }
   };
 
-  const creator = quiz?.user;
+  const creator = isPopulatedUser(quiz?.user) ? quiz.user : null;
   const creatorName =
-    (creator as any)?.name ||
-    (creator as any)?.username ||
+    creator?.name ||
+    creator?.username ||
     t("PublicQuiz.unknown_user", "Unknown user");
-  const initials = ((creator as any)?.username || (creator as any)?.name || "?")
+  const initials = (creator?.username || creator?.name || "?")
     .slice(0, 2)
     .toUpperCase();
 
@@ -242,7 +243,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
               </div>
 
               {/* Creator */}
-              {creator && (
+              {quiz?.user && (
                 <div className="mt-5 flex items-center gap-3 rounded-xl border border-border bg-muted/30 px-3 py-2.5">
                   <Avatar className="h-8 w-8 shrink-0">
                     <AvatarFallback className="bg-primary/10 text-[11px] font-semibold text-primary">

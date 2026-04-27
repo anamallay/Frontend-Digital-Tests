@@ -14,6 +14,7 @@ import {
 
 import { AppDispatch, RootState } from "../reducer/store/store";
 import { QuizType } from "../types/QuizType";
+import { isPopulatedUser } from "../types/UserType";
 import { ScoreType } from "../types/ScoreType";
 import { fetchUserScores } from "../reducer/action/scoresSlice";
 import { fetchUserLibrary } from "../reducer/action/librariesSlice";
@@ -239,7 +240,8 @@ const Library: React.FC = () => {
                           <UserIcon className="h-4 w-4 shrink-0" />
                           <span>{t("Library.createdBy")}</span>
                           <span className="truncate font-medium text-foreground">
-                            {quiz.user?.name || t("Library.anonymousUser")}
+                            {(isPopulatedUser(quiz.user) && quiz.user.name) ||
+                              t("Library.anonymousUser")}
                           </span>
                         </div>
 

@@ -57,3 +57,29 @@ export type IUserInput = Omit<UserType, "_id" | "library" | "quizzes"> & {
 export type PublicUserType = Omit<UserType, "email" | "active"> & {
   publicQuizzesCount: number;
 };
+
+/**
+ * The shape returned when a backend endpoint populates `quiz.user` — only
+ * the fields safe to render in author bylines and avatars. Backend mongoose
+ * populate calls use `select: 'name username email'` (see
+ * `quizzesController.getQuizzes`), so these are the fields actually present.
+ *
+ * `QuizType.user` is `string | PopulatedUserSummary` because some endpoints
+ * return the raw ObjectId reference and others populate. Always narrow with
+ * `isPopulatedUser` before reading subfields.
+ */
+export type PopulatedUserSummary = Pick<UserType, "_id" | "name" | "username"> & {
+  email?: string;
+};
+
+export function isPopulatedUser(
+  u: unknown
+): u is PopulatedUserSummary {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    "_id" in u &&
+    "name" in u &&
+    "username" in u
+  );
+}

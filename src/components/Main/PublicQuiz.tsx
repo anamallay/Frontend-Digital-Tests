@@ -20,6 +20,7 @@ import {
 } from "../../reducer/action/librariesSlice";
 import QuizDetailsModal from "../Modals/Quizzes/QuizDetailsModal";
 import { QuizType } from "../../types/QuizType";
+import { isPopulatedUser } from "../../types/UserType";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -175,7 +176,8 @@ const PublicQuiz = () => {
                             <UserIcon className="h-3 w-3 text-primary" />
                           </div>
                           <span className="font-medium">
-                            {quiz.user?.username || t("PublicQuiz.unknown_user")}
+                            {(isPopulatedUser(quiz.user) && quiz.user.username) ||
+                              t("PublicQuiz.unknown_user")}
                           </span>
                         </div>
 

@@ -88,7 +88,6 @@ function writeLoginFlag(isLoggedIn: boolean): void {
 const bootLoginFlag = readLoginFlag();
 
 export interface UserState {
-  users: UserType[];
   isLoading: boolean;
   error: string | Error | null;
   isLoggedIn: boolean;
@@ -102,7 +101,6 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  users: [],
   isLoading: false,
   error: null,
   // Trust the localStorage hint for the initial boolean; the boot effect

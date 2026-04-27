@@ -1,5 +1,5 @@
 import { QuestionType } from "./QuestionType";
-import { UserType } from "./UserType";
+import { PopulatedUserSummary } from "./UserType";
 
 export type QuizType = {
   _id: string;
@@ -8,7 +8,10 @@ export type QuizType = {
   time: number;
   visibility: "public" | "private";
   questions: QuestionType[];
-  user: UserType;
+  // Endpoints that populate the user field return a PopulatedUserSummary;
+  // endpoints that don't (e.g. raw library ObjectId refs) return a string.
+  // Narrow with `isPopulatedUser` before reading subfields.
+  user: string | PopulatedUserSummary;
   createdAt: string;
   updatedAt: string;
 };
