@@ -4,7 +4,7 @@ import { Mail, ArrowUpRight } from "lucide-react";
 import SectionTitle from "../../layout/SectionTitle";
 import { Button } from "@/components/ui/button";
 
-const CONTACT_EMAIL = "info@digitaltests.org";
+const CONTACT_EMAIL = "amalalikhardli@gmail.com";
 
 const Contact = () => {
   const { t, i18n } = useTranslation();

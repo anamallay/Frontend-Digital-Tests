@@ -161,7 +161,10 @@
     "noPublicQuizzes": "This user hasn't published any public exams yet"
   },
   "Footer": {
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+      "madeWith": "Made with",
+  "by": "by",
+  "creatorName": "Amal Khardli"
   },
   "Error": {
     "page_not_found": "Page not found",
