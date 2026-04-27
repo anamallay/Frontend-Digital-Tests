@@ -1,0 +1,109 @@
+@import "@fontsource-variable/geist";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DINNextLTArabic";
+  src: url("../assets/fonts/DDINNextLTArabic-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DINNextLTArabic";
+  src: url("../assets/fonts/DINNextLTArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    /* Page & text — unchanged */
+    --background: 60 9% 98%;
+    --foreground: 24 10% 10%;
+
+    /* Elevated surfaces — unchanged */
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 10%;
+    --surface: 0 0% 100%;
+
+    /* Brand — unchanged (indigo) */
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — warm light gray, used for disabled/submitted button states */
+    --secondary: 40 8% 91%;
+    --secondary-foreground: 24 10% 15%;
+
+    /* Muted — softer fill for subtle containers (empty-state icon circle, Skeletons) */
+    --muted: 60 5% 96%;
+    --muted-foreground: 25 6% 42%;
+
+    /* Accent — hover state on ghost/outline buttons and dropdown items */
+    --accent: 40 8% 93%;
+    --accent-foreground: 24 10% 10%;
+
+    /* Destructive — unchanged */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders — darker so card outlines, view-score button, and dashed empty state are visible on white surfaces */
+    --border: 30 6% 85%;
+    --input: 30 6% 85%;
+
+    /* Focus ring — unchanged, matches primary */
+    --ring: 243 75% 59%;
+
+    --radius: 0.5rem;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    line-height: calc(1em + 0.5rem);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply font-sans;
+  }
+
+  body {
+    font-family: "DINNextLTArabic", "Geist Variable", sans-serif;
+    @apply bg-background text-foreground;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+  }
+}

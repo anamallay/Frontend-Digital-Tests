@@ -1,0 +1,15 @@
+/* Custom toast background color */
+.Toastify__toast--custom {
+  background-color: #23ab49 !important;
+  color: #ffffff !important;
+}
+
+.toast-text-rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.toast-text-ltr {
+  direction: ltr;
+  text-align: left;
+}
