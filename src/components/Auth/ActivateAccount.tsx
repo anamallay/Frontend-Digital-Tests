@@ -126,7 +126,7 @@ const ActivateAccount = () => {
         <div
           className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${config.bg}`}
         >
-          <config.Icon className={`h-6 w-6 ${config.iconClass}`} />
+          <config.Icon className={`h-6 w-6 ${config.iconClass}`} aria-hidden="true" />
         </div>
         <p className="mb-6 text-sm text-muted-foreground sm:text-base">
           {config.description}

@@ -169,6 +169,7 @@ const changeLanguage = (lng: string) => {
                       className={`h-4 w-4 text-muted-foreground transition-transform ${
                         open ? "rotate-180" : ""
                       }`}
+                      aria-hidden="true"
                     />
                   </button>
                 </DropdownMenuTrigger>
@@ -185,6 +186,7 @@ const changeLanguage = (lng: string) => {
                     <Link to="/dashboard/scores" className="cursor-pointer">
                       <Trophy
                         className={`h-4 w-4 ${iconMargin} text-muted-foreground`}
+                        aria-hidden="true"
                       />
                       {t("Header.examiner_scores")}
                     </Link>
@@ -193,6 +195,7 @@ const changeLanguage = (lng: string) => {
                     <Link to="/dashboard/quizzes" className="cursor-pointer">
                       <FileText
                         className={`h-4 w-4 ${iconMargin} text-muted-foreground`}
+                        aria-hidden="true"
                       />
                       {t("Header.my_quizzes")}
                     </Link>
@@ -201,6 +204,7 @@ const changeLanguage = (lng: string) => {
                     <Link to="/dashboard/library" className="cursor-pointer">
                       <BookMarked
                         className={`h-4 w-4 ${iconMargin} text-muted-foreground`}
+                        aria-hidden="true"
                       />
                       {t("Header.my_library")}
                     </Link>
@@ -209,6 +213,7 @@ const changeLanguage = (lng: string) => {
                     <Link to="/profile" className="cursor-pointer">
                       <User
                         className={`h-4 w-4 ${iconMargin} text-muted-foreground`}
+                        aria-hidden="true"
                       />
                       {t("Header.view_profile")}
                     </Link>
@@ -218,7 +223,7 @@ const changeLanguage = (lng: string) => {
                     onClick={handleLogout}
                     className="text-danger focus:text-danger cursor-pointer"
                   >
-                    <LogOut className={`h-4 w-4 ${iconMargin}`} />
+                    <LogOut className={`h-4 w-4 ${iconMargin}`} aria-hidden="true" />
                     {t("Header.logout")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>

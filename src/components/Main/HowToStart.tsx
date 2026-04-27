@@ -53,7 +53,7 @@ const HowToStart = () => {
 
             {/* Icon */}
             <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <step.Icon className="h-6 w-6" />
+              <step.Icon className="h-6 w-6" aria-hidden="true" />
             </div>
 
             {/* Title */}

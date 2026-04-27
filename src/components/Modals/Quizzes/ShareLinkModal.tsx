@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Share2, X, Copy, Check, ExternalLink } from "lucide-react";
 import { toast } from "react-toastify";
 
+import { useModal } from "../../../hooks/useModal";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -40,25 +41,7 @@ const ShareLinkModal: React.FC<ShareLinkModalProps> = ({
     return () => clearTimeout(timeout);
   }, [isCopied]);
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const handleCopyLink = async () => {
     if (!quizLink) return;
@@ -105,7 +88,7 @@ const ShareLinkModal: React.FC<ShareLinkModalProps> = ({
             <div className="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Share2 className="h-4 w-4 text-primary" />
+                  <Share2 className="h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
                 <h2
                   id="share-link-title"
@@ -140,7 +123,7 @@ const ShareLinkModal: React.FC<ShareLinkModalProps> = ({
                     className="flex min-w-0 flex-1 items-center gap-2 truncate px-2 py-1.5 text-sm text-foreground hover:text-primary"
                     title={quizLink}
                   >
-                    <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                    <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
                     <span className="truncate font-mono text-xs sm:text-sm">
                       {quizLink}
                     </span>
@@ -159,12 +142,12 @@ const ShareLinkModal: React.FC<ShareLinkModalProps> = ({
                       >
                         {isCopied ? (
                           <>
-                            <Check className="h-3.5 w-3.5" />
+                            <Check className="h-3.5 w-3.5" aria-hidden="true" />
                             {t("Modals.ShareLinkModal.copiedButton")}
                           </>
                         ) : (
                           <>
-                            <Copy className="h-3.5 w-3.5" />
+                            <Copy className="h-3.5 w-3.5" aria-hidden="true" />
                             {t("Modals.ShareLinkModal.copyButton")}
                           </>
                         )}

@@ -74,17 +74,14 @@ const Score = () => {
           {t("Score.examinerQuizResults")}
         </h1>
         <p className="mt-2 text-muted-foreground">
-          {t(
-            "Score.subtitle",
-            "Review submissions on quizzes you have shared"
-          )}
+          {t("Score.subtitle")}
         </p>
       </div>
 
       {/* Error banner */}
       {errorExaminer && !isLoadingExaminer && (
         <div className="mb-6 flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+          <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           <span>{errorExaminer}</span>
         </div>
       )}
@@ -110,7 +107,7 @@ const Score = () => {
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-            <Inbox className="h-6 w-6 text-muted-foreground" />
+            <Inbox className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {t("Score.noResultsAvailable")}
@@ -196,7 +193,7 @@ const Score = () => {
                       {/* Stats */}
                       <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-sm">
                         <div className="flex items-center gap-1.5 text-muted-foreground">
-                          <ListChecks className="h-4 w-4" />
+                          <ListChecks className="h-4 w-4" aria-hidden="true" />
                           <span className="font-medium text-foreground">
                             {score.totalQuestions}
                           </span>
@@ -205,12 +202,12 @@ const Score = () => {
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5 text-muted-foreground">
-                          <Check className="h-4 w-4 text-emerald-600" />
+                          <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
                           <span className="font-medium text-foreground">
                             {score.correctAnswers}
                           </span>
                           <span className="text-xs">
-                            {t("Score.correctAnswers")}
+                            {t("QuizQuestions.answered")}
                           </span>
                         </div>
                       </div>

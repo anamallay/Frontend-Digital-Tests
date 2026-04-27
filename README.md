@@ -10,12 +10,10 @@ A production-grade React + TypeScript web application for creating, sharing, and
 
 ## Screenshots
 
-> _Add two screenshots here side by side — one English (LTR), one Arabic (RTL) — to demonstrate the i18n work. Markdown supports side-by-side images via HTML:_
->
 > ```html
 > <p align="center">
->   <img src="docs/screenshot-en.png" width="48%" alt="English LTR view" />
->   <img src="docs/screenshot-ar.png" width="48%" alt="Arabic RTL view" />
+>   <img src="/Frontend-Digital-Tests/public/image/one.png.png" width="48%" alt="English LTR view" />
+>   <img src="/Frontend-Digital-Tests/public/image/two.png" width="48%" alt="Arabic RTL view" />
 > </p>
 > ```
 

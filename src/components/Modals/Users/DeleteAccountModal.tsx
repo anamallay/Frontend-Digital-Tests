@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useModal } from "../../../hooks/useModal";
 import ReactDOM from "react-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,25 +21,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
 
-  // Close on Escape.
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Lock body scroll while modal is open.
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const content = (
     <AnimatePresence>
@@ -72,7 +55,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
             <div className="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-destructive/10">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <AlertTriangle className="h-5 w-5 text-destructive" aria-hidden="true" />
                 </div>
                 <h2
                   id="delete-account-title"
@@ -98,7 +81,7 @@ const DeleteAccountModal: React.FC<DeleteAccountModalProps> = ({
               </p>
 
               <div className="mt-4 flex items-start gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-3">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
                 <p className="text-sm leading-relaxed text-foreground">
                   {t("Modals.DeleteAccountModal.warningMessage")}
                 </p>

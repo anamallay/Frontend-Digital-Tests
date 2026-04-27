@@ -159,7 +159,7 @@ const Library: React.FC = () => {
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-            <FileQuestion className="h-6 w-6 text-muted-foreground" />
+            <FileQuestion className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {t("Library.noQuizzes")}
@@ -245,7 +245,7 @@ const Library: React.FC = () => {
                       {/* Meta rows */}
                       <div className="flex-1 space-y-2.5 text-sm">
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <UserIcon className="h-4 w-4 shrink-0" />
+                          <UserIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
                           <span>{t("Library.createdBy")}</span>
                           <span className="truncate font-medium text-foreground">
                             {(isPopulatedUser(quiz.user) && quiz.user.name) ||
@@ -254,7 +254,7 @@ const Library: React.FC = () => {
                         </div>
 
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <HelpCircle className="h-4 w-4 shrink-0" />
+                          <HelpCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
                           <span>{t("Library.questionsCount")}</span>
                           <span className="font-medium text-foreground">
                             {quiz.questions?.length ?? 0}
@@ -262,7 +262,7 @@ const Library: React.FC = () => {
                         </div>
 
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <Trophy className="h-4 w-4 shrink-0" />
+                          <Trophy className="h-4 w-4 shrink-0" aria-hidden="true" />
                           <span>{t("Library.score")}</span>
                           <span
                             className={`font-semibold ${

@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, X } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { AppDispatch } from "../../../reducer/store/store";
 import { removeQuizFromLibrary } from "../../../reducer/action/librariesSlice";
 
@@ -27,23 +28,7 @@ const DeleteLibraryModal: React.FC<DeleteModalProps> = ({
     dispatch(removeQuizFromLibrary(quizId)).then(() => onClose());
   };
 
-  // Close on Escape
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, []);
+  useModal({ onClose });
 
   const content = (
     <AnimatePresence>
@@ -76,16 +61,13 @@ const DeleteLibraryModal: React.FC<DeleteModalProps> = ({
           <div className="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-destructive/10">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <AlertTriangle className="h-5 w-5 text-destructive" aria-hidden="true" />
               </div>
               <h2
                 id="delete-library-title"
                 className="text-lg font-semibold tracking-tight text-foreground"
               >
-                {t(
-                  "Modals.DeleteLibraryModal.title",
-                  "Remove from library"
-                )}
+                {t("Modals.DeleteLibraryModal.title")}
               </h2>
             </div>
             <button

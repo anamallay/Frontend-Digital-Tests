@@ -56,7 +56,7 @@ const Hero = () => {
       >
         {/* Eyebrow badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-          <Sparkles className="h-3.5 w-3.5 text-primary" />
+          <Sparkles className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           <span className="tracking-wide">{t("Hero.goal")}</span>
         </div>
 
@@ -77,6 +77,7 @@ const Hero = () => {
               {t("Hero.browseButton")}
               <ArrowRight
                 className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                aria-hidden="true"
               />
             </Link>
           </Button>

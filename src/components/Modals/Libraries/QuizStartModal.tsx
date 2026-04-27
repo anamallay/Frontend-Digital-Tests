@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useModal } from "../../../hooks/useModal";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -25,25 +26,7 @@ const QuizStartModal: React.FC<QuizStartModalProps> = ({
   const isRTL = i18n.language === "ar";
   const navigate = useNavigate();
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const handleStartQuiz = () => {
     if (!quiz) return;
@@ -87,6 +70,7 @@ const QuizStartModal: React.FC<QuizStartModalProps> = ({
                     className={`h-4 w-4 text-primary ${
                       isRTL ? "rotate-180" : ""
                     }`}
+                    aria-hidden="true"
                   />
                 </div>
                 <h2
@@ -117,14 +101,14 @@ const QuizStartModal: React.FC<QuizStartModalProps> = ({
               {/* Stats preview */}
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                  <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" />
+                  <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                   <span>{quiz.questions?.length ?? 0}</span>
                   <span className="text-muted-foreground">
                     {t("Quiz.question")}
                   </span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                  <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                  <Clock className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                   <span>{quiz.time}</span>
                   <span className="text-muted-foreground">
                     {t("Quiz.minutes")}
@@ -152,6 +136,7 @@ const QuizStartModal: React.FC<QuizStartModalProps> = ({
                   className={`h-4 w-4 ${
                     isRTL ? "ml-2 rotate-180" : "mr-2"
                   }`}
+                  aria-hidden="true"
                 />
                 {t("Modals.QuizStartModal.confirmButton")}
               </Button>

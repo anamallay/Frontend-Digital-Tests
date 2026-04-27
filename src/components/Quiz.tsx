@@ -140,7 +140,7 @@ const Quiz: React.FC = () => {
           onClick={() => setOpenCreateModal(true)}
           className="shrink-0 self-start sm:self-auto"
         >
-          <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+          <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
           {t("Quiz.addQuiz")}
         </Button>
       </div>
@@ -164,7 +164,7 @@ const Quiz: React.FC = () => {
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-            <FilePlus className="h-6 w-6 text-muted-foreground" />
+            <FilePlus className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="mb-2 text-lg font-semibold text-foreground">
             {t("Quiz.noQuizzesFound")}
@@ -173,7 +173,7 @@ const Quiz: React.FC = () => {
             {t("Quiz.emptyHint")}
           </p>
           <Button onClick={() => setOpenCreateModal(true)}>
-            <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+            <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
             {t("Quiz.addQuiz")}
           </Button>
         </div>
@@ -208,19 +208,13 @@ const Quiz: React.FC = () => {
                           }`}
                         >
                           {isPublic ? (
-                            <Globe className="h-3 w-3" />
+                            <Globe className="h-3 w-3" aria-hidden="true" />
                           ) : (
-                            <Lock className="h-3 w-3" />
+                            <Lock className="h-3 w-3" aria-hidden="true" />
                           )}
                           {isPublic
-                            ? t(
-                                "Modals.CreateQuizModal.publicOption",
-                                "Public"
-                              )
-                            : t(
-                                "Modals.CreateQuizModal.privateOption",
-                                "Private"
-                              )}
+                            ? t("Modals.CreateQuizModal.publicOption")
+                            : t("Modals.CreateQuizModal.privateOption")}
                         </span>
 
                         <Tooltip>
@@ -271,7 +265,7 @@ const Quiz: React.FC = () => {
                       {/* Meta chips */}
                       <div className="mb-5 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                         <span className="inline-flex items-center gap-1.5">
-                          <HelpCircle className="h-3.5 w-3.5" />
+                          <HelpCircle className="h-3.5 w-3.5" aria-hidden="true" />
                           <span className="font-medium text-foreground">
                             {questionsCount}
                           </span>
@@ -279,7 +273,7 @@ const Quiz: React.FC = () => {
                         </span>
                         <span className="h-3 w-px bg-border" />
                         <span className="inline-flex items-center gap-1.5">
-                          <Clock className="h-3.5 w-3.5" />
+                          <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                           <span className="font-medium text-foreground">
                             {quiz.time}
                           </span>
@@ -298,11 +292,9 @@ const Quiz: React.FC = () => {
                             className={`h-4 w-4 ${
                               isRTL ? "ml-2" : "mr-2"
                             }`}
+                            aria-hidden="true"
                           />
-                          {t(
-                            "Modals.EditQuestionsModal.editQuizTitle",
-                            "Edit Questions"
-                          ).replace(": {{quizTitle}}", "")}
+                          {t("Modals.EditQuestionsModal.headerSimple")}
                         </Button>
 
                         <Tooltip>

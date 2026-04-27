@@ -13,6 +13,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { QuizType } from "../../../types/QuizType";
 import { QuestionType } from "../../../types/QuestionType";
 import { AppDispatch, RootState } from "../../../reducer/store/store";
@@ -76,25 +77,7 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
     if (quiz && isOpen) dispatch(fetchQuestionsByQuizId(quiz._id));
   }, [dispatch, quiz?._id, isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const resetForm = () => {
     setNewQuestion("");
@@ -193,17 +176,14 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
             <div className="flex items-start justify-between gap-3 border-b border-border px-6 py-5">
               <div className="flex min-w-0 items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <ListChecks className="h-4 w-4 text-primary" />
+                  <ListChecks className="h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
                 <div className="min-w-0">
                   <h2
                     id="edit-questions-title"
                     className="truncate text-lg font-semibold tracking-tight text-foreground"
                   >
-                    {t(
-                      "Modals.EditQuestionsModal.editQuizTitle",
-                      "Edit Questions"
-                    ).replace(": {{quizTitle}}", "")}
+                    {t("Modals.EditQuestionsModal.headerSimple")}
                   </h2>
                   <p className="truncate text-xs text-muted-foreground">
                     {quiz.title}
@@ -248,17 +228,14 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
                   ) : questions.length === 0 ? (
                     <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-surface/50 py-8 text-center">
                       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-muted">
-                        <FileQuestion className="h-5 w-5 text-muted-foreground" />
+                        <FileQuestion className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
                       </div>
                       <p className="text-sm font-medium text-foreground">
                         {t("Modals.EditQuestionsModal.noQuestionsFound")}
                       </p>
                       <p className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground">
-                        <ArrowDown className="h-3 w-3" />
-                        {t(
-                          "Modals.EditQuestionsModal.startBelowHint",
-                          "Add your first question below"
-                        )}
+                        <ArrowDown className="h-3 w-3" aria-hidden="true" />
+                        {t("Modals.EditQuestionsModal.startBelowHint")}
                       </p>
                     </div>
                   ) : (
@@ -325,7 +302,7 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
                 {/* Add new question */}
                 <section className="px-6 py-5">
                   <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-foreground">
-                    <Plus className="h-4 w-4 text-primary" />
+                    <Plus className="h-4 w-4 text-primary" aria-hidden="true" />
                     {t("Modals.EditQuestionsModal.addNewQuestionTitle")}
                   </h3>
 
@@ -409,10 +386,7 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
 
                       {!canSubmit && !isSubmitting && (
                         <p className="text-xs text-muted-foreground">
-                          {t(
-                            "Modals.EditQuestionsModal.validationHint",
-                            "Fill in the question and all four options before adding."
-                          )}
+                          {t("Modals.EditQuestionsModal.validationHint")}
                         </p>
                       )}
                     </div>
@@ -423,7 +397,7 @@ const EditQuestionsModal: React.FC<EditQuestionsModalProps> = ({
                       disabled={!canSubmit}
                       className="w-full sm:w-auto"
                     >
-                      <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                      <Plus className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
                       {t("Modals.EditQuestionsModal.addQuestionButton")}
                     </Button>
                   </div>

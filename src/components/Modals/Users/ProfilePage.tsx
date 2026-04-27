@@ -151,7 +151,7 @@ const ProfilePage: React.FC = () => {
               {/* Activation banner */}
               {needsActivation && (
                 <div className="mb-6 flex items-start gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-3">
-                  <AlertCircle className="h-4 w-4 shrink-0 text-destructive" />
+                  <AlertCircle className="h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-foreground">
                       {t("ProfileModal.activation_warning")}
@@ -161,7 +161,7 @@ const ProfilePage: React.FC = () => {
                       onClick={handleResendActivationEmail}
                       className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
                     >
-                      <Mail className="h-3 w-3" />
+                      <Mail className="h-3 w-3" aria-hidden="true" />
                       {t("ProfileModal.resend_activation")}
                     </button>
                   </div>
@@ -251,6 +251,7 @@ const ProfilePage: React.FC = () => {
                       className={`h-4 w-4 animate-spin ${
                         isRTL ? "ml-2" : "mr-2"
                       }`}
+                      aria-hidden="true"
                     />
                   )}
                   {t("ProfileModal.save_changes")}
@@ -270,10 +271,7 @@ const ProfilePage: React.FC = () => {
                     {t("ProfileModal.delete_account")}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {t(
-                      "Modals.DeleteAccountModal.warningMessage",
-                      "This action cannot be undone."
-                    )}
+                    {t("ProfilePage.delete_account_short_warning")}
                   </p>
                 </div>
                 <Tooltip>
@@ -287,6 +285,7 @@ const ProfilePage: React.FC = () => {
                     >
                       <Trash2
                         className={`h-4 w-4 ${isRTL ? "ml-1.5" : "mr-1.5"}`}
+                        aria-hidden="true"
                       />
                       {t("ProfileModal.delete_account")}
                     </Button>

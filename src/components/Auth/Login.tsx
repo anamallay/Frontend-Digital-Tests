@@ -141,7 +141,7 @@ function Login() {
         )}
 
         <Button type="submit" className="w-full h-11" disabled={isLoading}>
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
           {t("Auth.Login.login_button")}
         </Button>
       </form>

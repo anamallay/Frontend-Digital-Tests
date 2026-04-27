@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, X } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { AppDispatch } from "../../../reducer/store/store";
 import { deleteQuiz } from "../../../reducer/action/quizzesSlice";
 
@@ -35,23 +36,7 @@ const DeleteQuizModal: React.FC<DeleteModalProps> = ({ quizId, onClose }) => {
     }
   };
 
-  // Close on Escape
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !isSubmitting) onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [onClose, isSubmitting]);
-
-  // Body scroll lock
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, []);
+  useModal({ onClose, preventClose: () => isSubmitting });
 
   const content = (
     <AnimatePresence>
@@ -84,7 +69,7 @@ const DeleteQuizModal: React.FC<DeleteModalProps> = ({ quizId, onClose }) => {
           <div className="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-destructive/10">
-                <AlertTriangle className="h-5 w-5 text-destructive" />
+                <AlertTriangle className="h-5 w-5 text-destructive" aria-hidden="true" />
               </div>
               <h2
                 id="delete-quiz-title"
@@ -112,7 +97,7 @@ const DeleteQuizModal: React.FC<DeleteModalProps> = ({ quizId, onClose }) => {
 
             {/* Cascade warning */}
             <div className="mt-4 flex items-start gap-3 rounded-lg border border-destructive/20 bg-destructive/5 p-3">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
               <p className="text-sm leading-relaxed text-foreground">
                 <strong className="font-semibold">
                   {t("Modals.DeleteQuizModal.warning")}

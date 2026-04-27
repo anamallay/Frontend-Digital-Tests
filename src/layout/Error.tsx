@@ -44,7 +44,7 @@ const Error = () => {
       >
         {/* Compass eyebrow badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
-          <Compass className="h-3.5 w-3.5 text-primary" />
+          <Compass className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           <span>{t("Error.page_not_found")}</span>
         </div>
 
@@ -70,6 +70,7 @@ const Error = () => {
               {t("Error.back_to_home")}
               <ArrowRight
                 className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                aria-hidden="true"
               />
             </Link>
           </Button>
@@ -82,6 +83,7 @@ const Error = () => {
           >
             <ArrowLeft
               className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
+              aria-hidden="true"
             />
             {t("Error.go_back")}
           </Button>

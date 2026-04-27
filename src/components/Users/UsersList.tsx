@@ -37,17 +37,14 @@ const UsersList = () => {
           {t("Users.title")}
         </h1>
         <p className="mt-2 text-muted-foreground">
-          {t(
-            "Users.subtitle",
-            "Browse people who create and share exams on the platform"
-          )}
+          {t("Users.subtitle")}
         </p>
       </div>
 
       {/* Error banner */}
       {errorList && !isLoadingList && (
         <div className="mb-6 flex items-start gap-3 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+          <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           <span>{errorList}</span>
         </div>
       )}
@@ -71,7 +68,7 @@ const UsersList = () => {
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-            <UsersIcon className="h-6 w-6 text-muted-foreground" />
+            <UsersIcon className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {t("Users.empty")}
@@ -115,7 +112,7 @@ const UsersList = () => {
                         @{user.username}
                       </p>
                       <div className="mt-1.5 flex items-center gap-1 text-xs text-muted-foreground">
-                        <FileQuestion className="h-3 w-3" />
+                        <FileQuestion className="h-3 w-3" aria-hidden="true" />
                         <span className="font-medium text-foreground">
                           {user.publicQuizzesCount}
                         </span>

@@ -73,7 +73,7 @@ const ShowScore: React.FC = () => {
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
-            <CircleAlert className="h-6 w-6 text-destructive" />
+            <CircleAlert className="h-6 w-6 text-destructive" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {errorExaminer || t("ShowScore.error")}
@@ -145,7 +145,7 @@ const ShowScore: React.FC = () => {
           <div className="relative flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10">
-                <Trophy className="h-6 w-6 text-primary" />
+                <Trophy className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -173,7 +173,7 @@ const ShowScore: React.FC = () => {
         <Card className="border-border">
           <CardContent className="flex items-center gap-3 p-4">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-muted">
-              <ListChecks className="h-4 w-4 text-muted-foreground" />
+              <ListChecks className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
             </div>
             <div className="min-w-0">
               <p className="text-xs text-muted-foreground">
@@ -189,7 +189,7 @@ const ShowScore: React.FC = () => {
         <Card className="border-border">
           <CardContent className="flex items-center gap-3 p-4">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10">
-              <Check className="h-4 w-4 text-emerald-600" />
+              <Check className="h-4 w-4 text-emerald-600" aria-hidden="true" />
             </div>
             <div className="min-w-0">
               <p className="text-xs text-muted-foreground">
@@ -205,7 +205,7 @@ const ShowScore: React.FC = () => {
         <Card className="border-border">
           <CardContent className="flex items-center gap-3 p-4">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-destructive/10">
-              <X className="h-4 w-4 text-destructive" />
+              <X className="h-4 w-4 text-destructive" aria-hidden="true" />
             </div>
             <div className="min-w-0">
               <p className="text-xs text-muted-foreground">
@@ -221,7 +221,7 @@ const ShowScore: React.FC = () => {
 
       {/* Questions list header */}
       <div className="mb-6 flex items-center gap-2">
-        <FileQuestion className="h-4 w-4 text-muted-foreground" />
+        <FileQuestion className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
         <h2 className="text-base font-semibold text-foreground">
           {t("ShowScore.questionsAndAnswers")}
         </h2>
@@ -267,9 +267,9 @@ const ShowScore: React.FC = () => {
                       }`}
                     >
                       {isCorrect ? (
-                        <Check className="h-3 w-3" />
+                        <Check className="h-3 w-3" aria-hidden="true" />
                       ) : (
-                        <X className="h-3 w-3" />
+                        <X className="h-3 w-3" aria-hidden="true" />
                       )}
                       {isCorrect
                         ? t("ShowScore.correctAnswer")

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Pen, X, Plus, Minus, Globe, Lock, Save } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { AppDispatch } from "../../../reducer/store/store";
 import {
   fetchUserQuizzes,
@@ -63,25 +64,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
     }
   }, [quiz]);
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !isSubmitting) onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose, isSubmitting]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose, preventClose: () => isSubmitting });
 
   // Validation
   const titleValid = quizTitle.trim().length > 0;
@@ -153,7 +136,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
             <div className="flex items-start justify-between gap-3 border-b border-border px-6 py-5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Pen className="h-4 w-4 text-primary" />
+                  <Pen className="h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
                 <h2
                   id="edit-quiz-title"
@@ -224,10 +207,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                   <div className="flex items-center gap-1 rounded-lg border border-border bg-surface px-1.5 py-1.5 transition-colors focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-primary/20">
                     <button
                       type="button"
-                      aria-label={t(
-                        "Modals.CreateQuizModal.decreaseTime",
-                        "Decrease"
-                      )}
+                      aria-label={t("Modals.CreateQuizModal.decreaseTime")}
                       onClick={() =>
                         setQuizTime((prev) => (prev > 1 ? prev - 1 : 1))
                       }
@@ -247,10 +227,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                     />
                     <button
                       type="button"
-                      aria-label={t(
-                        "Modals.CreateQuizModal.increaseTime",
-                        "Increase"
-                      )}
+                      aria-label={t("Modals.CreateQuizModal.increaseTime")}
                       onClick={() =>
                         setQuizTime((prev) => (prev || 0) + 1)
                       }
@@ -281,7 +258,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                     <SelectContent>
                       <SelectItem value="public">
                         <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-muted-foreground" />
+                          <Globe className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
                           <span>
                             {t("Modals.EditQuizModal.visibilityPublic")}
                           </span>
@@ -289,7 +266,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                       </SelectItem>
                       <SelectItem value="private">
                         <div className="flex items-center gap-2">
-                          <Lock className="h-4 w-4 text-muted-foreground" />
+                          <Lock className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
                           <span>
                             {t("Modals.EditQuizModal.visibilityPrivate")}
                           </span>
@@ -302,10 +279,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                 {/* Validation hint */}
                 {!canSubmit && !isSubmitting && (
                   <p className="text-xs text-muted-foreground">
-                    {t(
-                      "Modals.EditQuizModal.validationHint",
-                      "Fill in all fields before saving."
-                    )}
+                    {t("Modals.EditQuizModal.validationHint")}
                   </p>
                 )}
               </div>
@@ -328,7 +302,7 @@ const EditQuizModal: React.FC<EditQuizModalProps> = ({
                 disabled={!canSubmit}
                 className="min-w-[140px]"
               >
-                <Save className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Save className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
                 {t("Modals.EditQuizModal.saveChangesButton")}
               </Button>
             </div>

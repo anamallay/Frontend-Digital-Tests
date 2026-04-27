@@ -26,7 +26,7 @@ const Contact = () => {
 
         <div className="relative">
           <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-background">
-            <Mail className="h-5 w-5 text-primary" />
+            <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
           </div>
 
           <SectionTitle title={t("Contact.title")} />
@@ -43,7 +43,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
               >
                 {t("Contact.buttonText")}
-                <ArrowUpRight className="ml-2 h-4 w-4" />
+                <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </Button>
 

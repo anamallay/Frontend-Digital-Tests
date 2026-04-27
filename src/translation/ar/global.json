@@ -135,6 +135,9 @@
     "resend_activation": "إعادة إرسال بريد التفعيل",
     "delete_account": "حذف الحساب"
   },
+  "ProfilePage": {
+    "delete_account_short_warning": "لا يمكن التراجع عن هذا الإجراء."
+  },
   "PublicQuiz": {
     "title": "الاختبارات العامة",
     "subtitle": "تصفّح الاختبارات التي شاركها المجتمع واحفظها في مكتبتك",
@@ -152,7 +155,7 @@
     "title": "المستخدمون",
     "subtitle": "تصفّح الأشخاص الذين ينشئون الاختبارات ويشاركونها على المنصة",
     "empty": "لا يوجد مستخدمون بعد",
-    "publicExamsCount": "اختبار عام"
+    "publicExamsCount": "اختبارات عامة"
   },
   "UserProfile": {
     "notFound": "لم يتم العثور على المستخدم",
@@ -230,7 +233,8 @@
     "successPublicQuiz": "تم إضافة الاختبار العام إلى مكتبتك بنجاح",
     "successPrivateQuiz": "تم إضافة الاختبار الخاص إلى مكتبتك بنجاح",
     "errorAddingQuiz": "حدث خطأ أثناء إضافة الاختبار إلى مكتبتك",
-    "errorPrefix": "خطأ:"
+    "errorPrefix": "خطأ:",
+    "redirectHint": "ستتم إعادة توجيهك إلى مكتبتك قريباً."
   },
   "Library": {
     "loadingError": "حدث خطأ أثناء تحميل المكتبة.",
@@ -271,6 +275,7 @@
     "labelTime": "الوقت:",
     "labelQuestionsCount": "عدد الأسئلة:",
     "labelCreatedAt": "تاريخ الإنشاء:",
+    "labelCreatedBy": "بواسطة",
     "minutes": "دقيقة",
     "questions": "أسئلة",
     "addQuiz": "إضافة...",
@@ -287,7 +292,8 @@
     "noOptionsAvailable": "لا توجد خيارات متاحة لهذا السؤال.",
     "submitAnswers": "إرسال الإجابات",
     "previous": "السابق",
-    "next": "التالي"
+    "next": "التالي",
+    "answered": "تمت الإجابة"
   },
   "Score": {
     "examinerQuizResults": "نتائج اختبارات الفاحص",
@@ -322,6 +328,7 @@
   },
   "Modals": {
     "DeleteLibraryModal": {
+      "title": "إزالة من المكتبة",
       "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا الاختبار من مكتبتك؟",
       "confirmButton": "نعم، أنا متأكد",
       "cancelButton": "لا، إلغاء"
@@ -333,6 +340,7 @@
       "confirmButton": "أبدأ الآن"
     },
     "DeleteQuestionModal": {
+      "title": "حذف السؤال",
       "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا السؤال",
       "confirmButton": "نعم، أنا متأكد",
       "cancelButton": "لا، إلغاء"
@@ -344,19 +352,23 @@
       "correctOptionLabel": "اختر الإجابة الصحيحة",
       "correctOptionValue": "الخيار {{optionNumber}}",
       "updateButton": "تحديث السؤال",
-      "closeButton": "إغلاق"
+      "closeButton": "إغلاق",
+      "validationHint": "املأ السؤال وجميع الخيارات الأربعة قبل الحفظ."
     },
     "EditQuestionsModal": {
       "editQuizTitle": "تعديل الاختبار: {{quizTitle}}",
+      "headerSimple": "تعديل الأسئلة",
       "loadingError": "حدث خطأ أثناء تحميل الأسئلة: {{error}}",
       "noQuestionsFound": "لم يتم العثور على أسئلة لهذا الاختبار",
+      "startBelowHint": "أضف سؤالك الأول أدناه",
       "addNewQuestionTitle": "إضافة سؤال جديد",
       "addOptionsTitle": "إضافة الخيارات",
       "chooseCorrectAnswerTitle": "اختر الإجابة الصحيحة",
       "correctOption": "الخيار {{optionNumber}}",
       "addQuestionButton": "إضافة السؤال",
       "cancelButton": "إلغاء",
-      "deleteButton": "حذف"
+      "deleteButton": "حذف",
+      "validationHint": "املأ السؤال وجميع الخيارات الأربعة قبل الإضافة."
     },
     "CreateQuizModal": {
       "createNewQuiz": "إنشاء اختبار جديد",
@@ -397,7 +409,8 @@
       "visibilityPublic": "عام",
       "visibilityPrivate": "خاص",
       "saveChangesButton": "حفظ التغييرات",
-      "cancelButton": "إلغاء"
+      "cancelButton": "إلغاء",
+      "validationHint": "املأ جميع الحقول قبل الحفظ."
     },
     "ShareLinkModal": {
       "title": "مشاركة رابط الاختبار",

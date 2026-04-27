@@ -43,7 +43,7 @@ function ForgotPassword() {
       <AuthCard title={t("Auth.ForgotPassword.check_email")}>
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-            <Mail className="h-6 w-6 text-primary" />
+            <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
           </div>
           <p className="mb-6 text-sm text-muted-foreground sm:text-base">
             {t("Auth.ForgotPassword.email_instructions")}
@@ -52,6 +52,7 @@ function ForgotPassword() {
             <Link to="/login">
               <ArrowLeft
                 className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
+                aria-hidden="true"
               />
               {t("Auth.ForgotPassword.login_link")}
             </Link>
@@ -72,6 +73,7 @@ function ForgotPassword() {
         >
           <ArrowLeft
             className={`h-4 w-4 ${isRTL ? "ml-1.5 rotate-180" : "mr-1.5"}`}
+            aria-hidden="true"
           />
           {t("Auth.ForgotPassword.login_link")}
         </Link>
@@ -92,7 +94,7 @@ function ForgotPassword() {
         </div>
 
         <Button type="submit" className="w-full h-11" disabled={isLoading}>
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
           {t("Auth.ForgotPassword.submit_button")}
         </Button>
       </form>

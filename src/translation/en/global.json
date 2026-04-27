@@ -135,6 +135,9 @@
     "resend_activation": "Resend Activation Email",
     "delete_account": "Delete Account"
   },
+  "ProfilePage": {
+    "delete_account_short_warning": "This action cannot be undone."
+  },
   "PublicQuiz": {
     "title": "Public Exams",
     "subtitle": "Browse and save exams shared by the community",
@@ -230,7 +233,8 @@
     "successPublicQuiz": "The public quiz has been successfully added to your library",
     "successPrivateQuiz": "The private quiz has been successfully added to your library",
     "errorAddingQuiz": "An error occurred while adding the quiz to your library",
-    "errorPrefix": "Error:"
+    "errorPrefix": "Error:",
+    "redirectHint": "You will be redirected to your library shortly."
   },
   "Library": {
     "loadingError": "An error occurred while loading the library.",
@@ -257,7 +261,7 @@
     "numberOfQuestions": "Number of Questions:",
     "description": "Quiz Description:",
     "time": "Quiz Duration:",
-    "question": "question",
+    "question": "questions",
     "minutes": "minutes",
     "addQuiz": "Add Quiz",
     "editQuiz": "Edit Quiz",
@@ -271,6 +275,7 @@
     "labelTime": "Time:",
     "labelQuestionsCount": "Number of Questions:",
     "labelCreatedAt": "Created At:",
+    "labelCreatedBy": "Created by",
     "minutes": "minutes",
     "questions": "questions",
     "addQuiz": "Adding...",
@@ -287,7 +292,8 @@
     "noOptionsAvailable": "No options available for this question.",
     "submitAnswers": "Submit Answers",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "answered": "answered"
   },
   "Score": {
     "examinerQuizResults": "Examiner Quiz Results",
@@ -322,6 +328,7 @@
   },
   "Modals": {
     "DeleteLibraryModal": {
+      "title": "Remove from library",
       "confirmationMessage": "Are you sure you want to delete this quiz from your library?",
       "confirmButton": "Yes, I'm sure",
       "cancelButton": "No, cancel"
@@ -333,6 +340,7 @@
       "confirmButton": "Start Now"
     },
     "DeleteQuestionModal": {
+      "title": "Delete question",
       "confirmationMessage": "Are you sure you want to delete this question",
       "confirmButton": "Yes, I'm sure",
       "cancelButton": "No, cancel"
@@ -344,19 +352,23 @@
       "correctOptionLabel": "Choose the correct answer",
       "correctOptionValue": "Option {{optionNumber}}",
       "updateButton": "Update Question",
-      "closeButton": "Close"
+      "closeButton": "Close",
+      "validationHint": "Fill in the question and all four options before saving."
     },
     "EditQuestionsModal": {
       "editQuizTitle": "Edit Quiz: {{quizTitle}}",
+      "headerSimple": "Edit Questions",
       "loadingError": "An error occurred while loading questions: {{error}}",
       "noQuestionsFound": "No questions found for this quiz",
+      "startBelowHint": "Add your first question below",
       "addNewQuestionTitle": "Add a new question",
       "addOptionsTitle": "Add options",
       "chooseCorrectAnswerTitle": "Choose the correct answer",
       "correctOption": "Option {{optionNumber}}",
       "addQuestionButton": "Add Question",
       "cancelButton": "Cancel",
-      "deleteButton": "Delete"
+      "deleteButton": "Delete",
+      "validationHint": "Fill in the question and all four options before adding."
     },
     "CreateQuizModal": {
       "createNewQuiz": "Create New Quiz",
@@ -397,7 +409,8 @@
       "visibilityPublic": "Public",
       "visibilityPrivate": "Private",
       "saveChangesButton": "Save Changes",
-      "cancelButton": "Cancel"
+      "cancelButton": "Cancel",
+      "validationHint": "Fill in all fields before saving."
     },
     "ShareLinkModal": {
       "title": "Share Quiz Link",

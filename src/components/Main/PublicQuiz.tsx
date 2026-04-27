@@ -173,7 +173,7 @@ const PublicQuiz = () => {
                       <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10">
-                            <UserIcon className="h-3 w-3 text-primary" />
+                            <UserIcon className="h-3 w-3 text-primary" aria-hidden="true" />
                           </div>
                           <span className="font-medium">
                             {(isPopulatedUser(quiz.user) && quiz.user.username) ||
@@ -225,7 +225,7 @@ const PublicQuiz = () => {
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-            <FileQuestion className="h-6 w-6 text-muted-foreground" />
+            <FileQuestion className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {t("PublicQuiz.no_quizzes")}
@@ -248,9 +248,9 @@ const PublicQuiz = () => {
             className="h-9 w-9"
           >
             {isRTL ? (
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
             ) : (
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             )}
           </Button>
 
@@ -286,9 +286,9 @@ const PublicQuiz = () => {
             className="h-9 w-9"
           >
             {isRTL ? (
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             ) : (
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
             )}
           </Button>
         </nav>

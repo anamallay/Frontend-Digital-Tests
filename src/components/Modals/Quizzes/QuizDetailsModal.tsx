@@ -17,6 +17,7 @@ import {
   User as UserIcon,
 } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { QuizType } from "../../../types/QuizType";
 import { isPopulatedUser } from "../../../types/UserType";
 import { AppDispatch, RootState } from "../../../reducer/store/store";
@@ -68,25 +69,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
     })();
   }, [isOpen, quiz?._id, dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const handleShareQuiz = async () => {
     if (!quiz) return;
@@ -163,7 +146,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
             <div className="flex items-start justify-between gap-3 border-b border-border px-6 py-5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Eye className="h-4 w-4 text-primary" />
+                  <Eye className="h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
                 <h2
                   id="quiz-details-title"
@@ -194,9 +177,9 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                   }`}
                 >
                   {isPublic ? (
-                    <Globe className="h-3 w-3" />
+                    <Globe className="h-3 w-3" aria-hidden="true" />
                   ) : (
-                    <Lock className="h-3 w-3" />
+                    <Lock className="h-3 w-3" aria-hidden="true" />
                   )}
                   {isPublic
                     ? t("Modals.CreateQuizModal.publicOption")
@@ -217,14 +200,14 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
               {/* Stat chips */}
               <div className="mt-5 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                  <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" />
+                  <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                   <span>{quiz.questions?.length ?? 0}</span>
                   <span className="text-muted-foreground">
                     {t("QuizDetailsModal.questions")}
                   </span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                  <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                  <Clock className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                   <span>{quiz.time}</span>
                   <span className="text-muted-foreground">
                     {t("QuizDetailsModal.minutes")}
@@ -232,7 +215,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                 </span>
                 {quiz.createdAt && (
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                    <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                    <Calendar className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                     <span>
                       {new Date(quiz.createdAt).toLocaleDateString(
                         isRTL ? "ar-EG" : "en-US"
@@ -252,16 +235,13 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                   </Avatar>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs text-muted-foreground">
-                      {t(
-                        "QuizDetailsModal.labelCreatedBy",
-                        "Created by"
-                      )}
+                      {t("QuizDetailsModal.labelCreatedBy")}
                     </p>
                     <p className="truncate text-sm font-medium text-foreground">
                       {creatorName}
                     </p>
                   </div>
-                  <UserIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <UserIcon className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
                 </div>
               )}
             </div>
@@ -275,7 +255,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                 onClick={handleShareQuiz}
                 disabled={isSharing}
               >
-                <Share2 className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Share2 className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
                 {t("QuizDetailsModal.shareButton")}
               </Button>
 
@@ -299,6 +279,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                     <>
                       <BookmarkCheck
                         className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`}
+                        aria-hidden="true"
                       />
                       {t("QuizDetailsModal.addedLabel")}
                     </>
@@ -306,11 +287,9 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                     <>
                       <BookmarkPlus
                         className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`}
+                        aria-hidden="true"
                       />
-                      {t(
-                        "QuizDetailsModal.addQuizTooltip",
-                        "Add to library"
-                      )}
+                      {t("QuizDetailsModal.addQuizTooltip")}
                     </>
                   )}
                 </Button>

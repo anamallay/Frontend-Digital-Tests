@@ -55,7 +55,7 @@ function ErrorFallback({
     >
       <div className="mx-auto max-w-md text-center">
         <div className="mb-4 mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
-          <AlertTriangle className="h-6 w-6 text-destructive" />
+          <AlertTriangle className="h-6 w-6 text-destructive" aria-hidden="true" />
         </div>
         <h1 className="mb-2 text-2xl font-semibold tracking-tight text-foreground">
           {t("Error.something_went_wrong")}

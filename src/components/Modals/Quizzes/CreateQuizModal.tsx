@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { AppDispatch } from "../../../reducer/store/store";
 import { IQuizInput } from "../../../types/QuizType";
 import {
@@ -44,6 +45,8 @@ const CreateQuizModal: React.FC<CreateQuizModalProps> = ({
   });
 
   const [error, setError] = useState<string | null>(null);
+
+  useModal({ isOpen, onClose });
 
   const handleCreateQuiz = async (e: React.FormEvent) => {
     e.preventDefault();

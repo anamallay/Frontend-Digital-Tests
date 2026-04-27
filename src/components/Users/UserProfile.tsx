@@ -87,7 +87,7 @@ const UserProfile = () => {
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
-            <CircleAlert className="h-6 w-6 text-destructive" />
+            <CircleAlert className="h-6 w-6 text-destructive" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {errorProfile || t("UserProfile.notFound")}
@@ -146,7 +146,7 @@ const UserProfile = () => {
 
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                  <FileQuestion className="h-3.5 w-3.5 text-muted-foreground" />
+                  <FileQuestion className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                   <span>{currentUser.publicQuizzesCount}</span>
                   <span className="text-muted-foreground">
                     {t("Users.publicExamsCount")}
@@ -154,7 +154,7 @@ const UserProfile = () => {
                 </span>
                 {joinedDate && (
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
-                    <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                    <Calendar className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                     <span className="text-muted-foreground">
                       {t("UserProfile.joined")}
                     </span>
@@ -169,7 +169,7 @@ const UserProfile = () => {
 
       {/* Public quizzes section */}
       <div className="mb-6 flex items-center gap-2">
-        <FileQuestion className="h-4 w-4 text-muted-foreground" />
+        <FileQuestion className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
         <h2 className="text-base font-semibold text-foreground">
           {t("UserProfile.publicExamsSection")}
         </h2>
@@ -178,13 +178,10 @@ const UserProfile = () => {
       {publicQuizzes.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-16 text-center">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-            <FileQuestion className="h-5 w-5 text-muted-foreground" />
+            <FileQuestion className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-base font-semibold text-foreground">
-            {t(
-              "UserProfile.noPublicQuizzes",
-              "This user hasn't published any public exams yet"
-            )}
+            {t("UserProfile.noPublicQuizzes")}
           </h3>
         </div>
       ) : (
@@ -218,14 +215,14 @@ const UserProfile = () => {
 
                   <div className="mt-6 flex items-center gap-4 border-t border-border pt-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1">
-                      <FileQuestion className="h-3.5 w-3.5" />
+                      <FileQuestion className="h-3.5 w-3.5" aria-hidden="true" />
                       <span className="font-medium text-foreground">
                         {quiz.questions?.length ?? 0}
                       </span>
                       <span>{t("Quiz.question")}</span>
                     </span>
                     <span className="inline-flex items-center gap-1">
-                      <UserIcon className="h-3.5 w-3.5" />
+                      <UserIcon className="h-3.5 w-3.5" aria-hidden="true" />
                       <span className="font-medium text-foreground">
                         {quiz.time}
                       </span>

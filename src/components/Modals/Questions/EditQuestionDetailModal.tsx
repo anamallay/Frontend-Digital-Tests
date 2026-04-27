@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Pen, Save, X } from "lucide-react";
 
+import { useModal } from "../../../hooks/useModal";
 import { QuestionType } from "../../../types/QuestionType";
 import { AppDispatch } from "../../../reducer/store/store";
 import { updateQuestionInQuiz } from "../../../reducer/action/questionsSlice";
@@ -56,25 +57,7 @@ const EditQuestionDetailModal: React.FC<EditQuestionDetailModalProps> = ({
     }
   }, [question]);
 
-  // Close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (!isOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [isOpen]);
+  useModal({ isOpen, onClose });
 
   const handleOptionChange = (index: number, value: string) => {
     setEditedOptions((prev) => {
@@ -148,7 +131,7 @@ const EditQuestionDetailModal: React.FC<EditQuestionDetailModalProps> = ({
             <div className="flex items-start justify-between gap-3 border-b border-border px-6 py-5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <Pen className="h-4 w-4 text-primary" />
+                  <Pen className="h-4 w-4 text-primary" aria-hidden="true" />
                 </div>
                 <h2
                   id="edit-question-title"
@@ -250,10 +233,7 @@ const EditQuestionDetailModal: React.FC<EditQuestionDetailModalProps> = ({
                 {/* Validation hint */}
                 {!canSubmit && !isSubmitting && (
                   <p className="mt-2 text-xs text-muted-foreground">
-                    {t(
-                      "Modals.EditQuestionDetailModal.validationHint",
-                      "Fill in the question and all four options before saving."
-                    )}
+                    {t("Modals.EditQuestionDetailModal.validationHint")}
                   </p>
                 )}
               </div>
@@ -276,7 +256,7 @@ const EditQuestionDetailModal: React.FC<EditQuestionDetailModalProps> = ({
                 disabled={!canSubmit}
                 className="min-w-[120px]"
               >
-                <Save className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Save className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
                 {t("Modals.EditQuestionDetailModal.updateButton")}
               </Button>
             </div>

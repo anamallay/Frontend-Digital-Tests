@@ -113,7 +113,7 @@ const AddLibrary: React.FC = () => {
               <div
                 className={`relative flex h-16 w-16 items-center justify-center rounded-full ${config.ringClass}`}
               >
-                <Icon className={`h-7 w-7 ${config.iconClass}`} />
+                <Icon className={`h-7 w-7 ${config.iconClass}`} aria-hidden="true" />
               </div>
             </div>
 
@@ -125,10 +125,7 @@ const AddLibrary: React.FC = () => {
             {/* Secondary line */}
             {status !== "error" && (
               <p className="text-sm text-muted-foreground">
-                {t(
-                  "AddLibrary.redirectHint",
-                  "You will be redirected to your library shortly."
-                )}
+                {t("AddLibrary.redirectHint")}
               </p>
             )}
 
@@ -143,6 +140,7 @@ const AddLibrary: React.FC = () => {
                 {t("Header.my_library")}
                 <ArrowRight
                   className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                  aria-hidden="true"
                 />
               </Link>
             </Button>

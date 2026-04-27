@@ -73,7 +73,7 @@ function ResetPassword() {
       <AuthCard title={t("Auth.ResetPassword.success_message")}>
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-            <CheckCircle2 className="h-6 w-6 text-primary" />
+            <CheckCircle2 className="h-6 w-6 text-primary" aria-hidden="true" />
           </div>
           <p className="mb-2 text-sm text-muted-foreground sm:text-base">
             {t("Auth.ResetPassword.success_description")}
@@ -165,7 +165,7 @@ function ResetPassword() {
         )}
 
         <Button type="submit" className="w-full h-11" disabled={isLoading}>
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
           {t("Auth.ResetPassword.submit_button")}
         </Button>
       </form>

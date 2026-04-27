@@ -192,7 +192,7 @@ const QuizQuestions: React.FC = () => {
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
-            <CircleAlert className="h-6 w-6 text-destructive" />
+            <CircleAlert className="h-6 w-6 text-destructive" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
             {t("QuizQuestions.loadingError")}
@@ -224,7 +224,7 @@ const QuizQuestions: React.FC = () => {
             {questions.length}
             <span className="mx-2">·</span>
             {answeredCount} / {questions.length}{" "}
-            {t("Score.correctAnswers")}
+            {t("QuizQuestions.answered")}
           </p>
         </div>
         {/*
@@ -321,7 +321,7 @@ const QuizQuestions: React.FC = () => {
             </div>
           ) : (
             <div className="flex items-center gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-sm text-destructive">
-              <CircleAlert className="h-4 w-4 shrink-0" />
+              <CircleAlert className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span>{t("QuizQuestions.noOptionsAvailable")}</span>
             </div>
           )}
@@ -338,6 +338,7 @@ const QuizQuestions: React.FC = () => {
         >
           <ArrowLeft
             className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
+            aria-hidden="true"
           />
           {t("QuizQuestions.previous")}
         </Button>
@@ -353,9 +354,10 @@ const QuizQuestions: React.FC = () => {
               {isSubmitting ? (
                 <Loader2
                   className={`h-4 w-4 animate-spin ${isRTL ? "ml-2" : "mr-2"}`}
+                  aria-hidden="true"
                 />
               ) : (
-                <Flag className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
+                <Flag className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} aria-hidden="true" />
               )}
               {t("QuizQuestions.submitAnswers")}
             </Button>
@@ -369,6 +371,7 @@ const QuizQuestions: React.FC = () => {
               {t("QuizQuestions.next")}
               <ArrowRight
                 className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                aria-hidden="true"
               />
             </Button>
           )}
@@ -385,9 +388,9 @@ const QuizQuestions: React.FC = () => {
             className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-muted-foreground"
           >
             {isSubmitting ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
             ) : (
-              <CheckCircle2 className="h-3.5 w-3.5" />
+              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
             )}
             {t("QuizQuestions.submitAnswers")}
           </button>
