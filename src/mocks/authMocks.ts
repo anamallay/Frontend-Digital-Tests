@@ -137,7 +137,7 @@ export async function mockLogout() {
 export async function mockRegister(payload: {
   name: string;
   username: string;
-  email: string;
+  email?: string;
   password: string;
 }) {
   await delay();
@@ -146,19 +146,21 @@ export async function mockRegister(payload: {
   if (!password || password.length < 6) {
     throw axiosError("Password must be at least 6 characters", 400);
   }
-  if (!username && !email) {
-    throw axiosError("Email or username is required", 400);
+  if (!username) {
+    throw axiosError("Username is required", 400);
   }
 
   // Enforce uniqueness against the seed users
+  const trimmedEmail = email?.trim();
   if (
-    email &&
-    MOCK_USERS.some((u) => u.email.toLowerCase() === email.toLowerCase())
+    trimmedEmail &&
+    MOCK_USERS.some(
+      (u) => !!u.email && u.email.toLowerCase() === trimmedEmail.toLowerCase()
+    )
   ) {
     throw axiosError("Email is already registered", 409);
   }
   if (
-    username &&
     MOCK_USERS.some((u) => u.username.toLowerCase() === username.toLowerCase())
   ) {
     throw axiosError("Username is already taken", 409);
@@ -168,7 +170,7 @@ export async function mockRegister(payload: {
     _id: `mock-user-${Date.now().toString(36)}`,
     name,
     username,
-    email,
+    email: trimmedEmail || "",
     password,
     // Newly registered users are inactive until they click the activation
     // link — matches the real backend's flow.

@@ -20,7 +20,6 @@ function Login() {
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [isEmail, setIsEmail] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -28,29 +27,25 @@ function Login() {
     dispatch(clearError());
   }, [dispatch]);
 
-  const handleToggle = () => {
-    setIsEmail(!isEmail);
-    setIdentifier("");
-    setFormError(null);
-  };
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
-    if (!identifier || !password) {
-      setFormError(
-        t("Auth.Login.missing_credentials", {
-          type: isEmail ? t("Auth.Login.email") : t("Auth.Login.username"),
-        })
-      );
+    const trimmed = identifier.trim();
+    if (!trimmed || !password) {
+      setFormError(t("Auth.Login.missing_credentials"));
       return;
     }
 
     try {
-      const credentials = isEmail
-        ? { email: identifier, password }
-        : { username: identifier, password };
+      // A `@` in the identifier is the heuristic for "this is an email,"
+      // matching Gmail/Slack/etc. The backend accepts either field, so a
+      // username that happens to contain `@` would be rejected on the
+      // server side as an unknown email — acceptable, since usernames
+      // don't allow `@` per Validation.RegisterValidation.username_format.
+      const credentials = trimmed.includes("@")
+        ? { email: trimmed, password }
+        : { username: trimmed, password };
       await dispatch(loginUser(credentials)).unwrap();
       toast.success(t("Auth.Login.welcome_back"));
       navigate("/");
@@ -70,9 +65,7 @@ function Login() {
   return (
     <AuthCard
       title={t("Auth.Login.welcome_back")}
-      subtitle={t("Auth.Login.prompt", {
-        type: isEmail ? t("Auth.Login.email") : t("Auth.Login.username"),
-      })}
+      subtitle={t("Auth.Login.prompt")}
       footer={
         <>
           {t("Auth.Login.no_account")}{" "}
@@ -87,32 +80,16 @@ function Login() {
     >
       <form onSubmit={handleLogin} className="space-y-4">
         <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="identifier">
-              {isEmail ? t("Auth.Login.email") : t("Auth.Login.username")}
-            </Label>
-            <button
-              type="button"
-              onClick={handleToggle}
-              className="text-xs font-medium text-primary hover:underline"
-            >
-              {isEmail
-                ? t("Auth.Login.use_username")
-                : t("Auth.Login.use_email")}
-            </button>
-          </div>
+          <Label htmlFor="identifier">{t("Auth.Login.identifier")}</Label>
           <Input
             id="identifier"
-            type={isEmail ? "email" : "text"}
-            placeholder={
-              isEmail
-                ? t("Auth.Login.email_placeholder")
-                : t("Auth.Login.username_placeholder")
-            }
+            type="text"
+            placeholder={t("Auth.Login.identifier_placeholder")}
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
             disabled={isLoading}
             required
+            autoComplete="username"
           />
         </div>
 

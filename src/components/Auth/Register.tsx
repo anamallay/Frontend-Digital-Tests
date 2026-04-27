@@ -53,12 +53,14 @@ function Register() {
     setFormError(null);
     setFieldErrors({});
 
-    if (!formData.username && !formData.email) {
-      setFormError(t("Auth.Register.enter_username_or_email"));
-      return;
-    }
-
     const errs: Partial<Record<keyof FormData, string>> = {};
+    if (!formData.username.trim()) {
+      errs.username = t("Auth.Register.username_required");
+    }
+    const trimmedEmail = formData.email.trim();
+    if (trimmedEmail && !/^\S+@\S+\.\S+$/.test(trimmedEmail)) {
+      errs.email = t("Auth.Register.invalid_email");
+    }
     if (formData.password.length < 6) {
       errs.password = t("Auth.Register.password_too_short");
     } else if (formData.password.length > 50) {
@@ -72,8 +74,15 @@ function Register() {
       return;
     }
 
-    const { name, username, email, password } = formData;
-    dispatch(registerUser({ name, username, email, password }))
+    const { name, username, password } = formData;
+    dispatch(
+      registerUser({
+        name,
+        username,
+        password,
+        ...(trimmedEmail ? { email: trimmedEmail } : {}),
+      })
+    )
       .unwrap()
       .then(() => setIsSubmitted(true))
       .catch(
@@ -177,11 +186,9 @@ function Register() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="username" className="flex items-center gap-2">
+            <Label htmlFor="username">
               {t("Auth.Register.username")}
-              <span className="text-xs font-normal text-muted-foreground">
-                ({t("Auth.Register.optional")})
-              </span>
+              <span className="ml-0.5 text-destructive">*</span>
             </Label>
             <Input
               id="username"
@@ -191,7 +198,17 @@ function Register() {
               value={formData.username}
               onChange={handleChange}
               disabled={isLoading}
+              required
+              aria-invalid={Boolean(fieldErrors.username)}
+              aria-describedby={
+                fieldErrors.username ? "username-error" : undefined
+              }
             />
+            {fieldErrors.username && (
+              <p id="username-error" className="text-xs text-destructive">
+                {fieldErrors.username}
+              </p>
+            )}
           </div>
         </div>
 
@@ -210,7 +227,20 @@ function Register() {
             value={formData.email}
             onChange={handleChange}
             disabled={isLoading}
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={
+              fieldErrors.email ? "email-error" : "email-helper"
+            }
           />
+          {fieldErrors.email ? (
+            <p id="email-error" className="text-xs text-destructive">
+              {fieldErrors.email}
+            </p>
+          ) : (
+            <p id="email-helper" className="text-xs text-muted-foreground">
+              {t("Auth.Register.email_helper_text")}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">
