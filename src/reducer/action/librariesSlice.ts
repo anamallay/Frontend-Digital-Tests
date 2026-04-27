@@ -25,7 +25,7 @@ export const fetchUserLibrary = createAsyncThunk<
   try {
     const response = await librariesApi.fetchUserLibrary();
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Library.fetchUserLibrary"))
     );
@@ -41,7 +41,7 @@ export const addPublicQuizToLibrary = createAsyncThunk<
   try {
     const response = await librariesApi.addPublic(quizId);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Library.addPublicQuizToLibrary"))
     );
@@ -57,7 +57,7 @@ export const addQuizToLibraryUsingToken = createAsyncThunk<
   try {
     const response = await librariesApi.addViaToken(token);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Library.addQuizToLibraryUsingToken"))
     );
@@ -72,8 +72,8 @@ export const removeQuizFromLibrary = createAsyncThunk<
 >("library/removeQuizFromLibrary", async (quizId, { rejectWithValue }) => {
   try {
     const response = await librariesApi.remove(quizId);
-    return response.data.library;
-  } catch (error) {
+    return response.data.data;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Library.removeQuizFromLibrary"))
     );
@@ -89,7 +89,7 @@ export const shareQuizWithCandidate = createAsyncThunk<
   try {
     const response = await librariesApi.share(quizId);
     return { quizLink: response.data.data.quizLink };
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Library.shareQuizWithCandidate"))
     );
@@ -110,7 +110,7 @@ const librarySlice = createSlice({
         fetchUserLibrary.fulfilled,
         (state, action: PayloadAction<QuizType[]>) => {
           state.isLoading = false;
-          state.library = Array.isArray(action.payload) ? action.payload : [];
+          state.library = action.payload;
         }
       )
       .addCase(
@@ -129,12 +129,7 @@ const librarySlice = createSlice({
         addPublicQuizToLibrary.fulfilled,
         (state, action: PayloadAction<QuizType[]>) => {
           state.isLoading = false;
-          // Backend currently returns `{ quizLink }` here (not the library).
-          // Skip writing unless we got a real array — the consumer dispatches
-          // fetchUserLibrary() afterward to refresh.
-          if (Array.isArray(action.payload)) {
-            state.library = action.payload;
-          }
+          state.library = action.payload;
         }
       )
       .addCase(
@@ -153,9 +148,7 @@ const librarySlice = createSlice({
         removeQuizFromLibrary.fulfilled,
         (state, action: PayloadAction<QuizType[]>) => {
           state.isLoading = false;
-          if (Array.isArray(action.payload)) {
-            state.library = action.payload;
-          }
+          state.library = action.payload;
         }
       )
       .addCase(
@@ -174,12 +167,7 @@ const librarySlice = createSlice({
         addQuizToLibraryUsingToken.fulfilled,
         (state, action: PayloadAction<QuizType[]>) => {
           state.isLoading = false;
-          // Backend currently returns just `{ message }` here. Skip writing
-          // so we don't clobber the existing library — the consumer dispatches
-          // fetchUserLibrary() afterward to refresh.
-          if (Array.isArray(action.payload)) {
-            state.library = action.payload;
-          }
+          state.library = action.payload;
         }
       )
       .addCase(

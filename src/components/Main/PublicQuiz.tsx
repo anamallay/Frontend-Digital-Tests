@@ -66,7 +66,7 @@ const PublicQuiz = () => {
       try {
         const library = await dispatch(fetchUserLibrary()).unwrap();
         setAddedQuizzes(library.map((q: QuizType) => q._id));
-      } catch (err) {
+      } catch (err: unknown) {
         console.error("Failed to fetch user library", err);
       }
     })();
@@ -80,7 +80,7 @@ const PublicQuiz = () => {
     try {
       await dispatch(addPublicQuizToLibrary(id)).unwrap();
       setAddedQuizzes((prev) => [...prev, id]);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Failed to add quiz to library", err);
     }
   };

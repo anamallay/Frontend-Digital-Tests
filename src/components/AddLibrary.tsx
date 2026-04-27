@@ -49,7 +49,7 @@ const AddLibrary: React.FC = () => {
           setMessage(t("AddLibrary.successPrivateQuiz"));
         }
         setStatus("success");
-      } catch (err) {
+      } catch (err: unknown) {
         setStatus("error");
         const errorMessage =
           typeof err === "string"

@@ -47,8 +47,8 @@ export const fetchUserScores = createAsyncThunk<
 >("scores/fetchUserScores", async (_, { rejectWithValue }) => {
   try {
     const response = await scoresApi.fetchUserScores();
-    return response.data.scores;
-  } catch (error) {
+    return response.data.data;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Score.fetchUserScores"))
     );
@@ -63,8 +63,8 @@ export const fetchSingleScore = createAsyncThunk<
 >("scores/fetchSingleScore", async (scoreId, { rejectWithValue }) => {
   try {
     const response = await scoresApi.fetchSingle(scoreId);
-    return response.data.score;
-  } catch (error) {
+    return response.data.data;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Score.fetchSingleScore"))
     );
@@ -79,9 +79,8 @@ export const fetchExaminerQuizScores = createAsyncThunk<
 >("scores/fetchExaminerQuizScores", async (_, { rejectWithValue }) => {
   try {
     const response = await scoresApi.fetchExaminer();
-    // Empty list is a successful state — never reject a 200 response.
-    return Array.isArray(response.data.scores) ? response.data.scores : [];
-  } catch (error) {
+    return response.data.data;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Score.fetchExaminerScores"))
     );
@@ -96,8 +95,8 @@ export const submitQuiz = createAsyncThunk<
 >("scores/submitQuiz", async ({ quizId, answers }, { rejectWithValue }) => {
   try {
     const response = await scoresApi.submit(quizId, answers);
-    return response.data.score;
-  } catch (error) {
+    return response.data.data;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Score.submitQuiz"))
     );
@@ -113,7 +112,7 @@ export const deleteScore = createAsyncThunk<
   try {
     await scoresApi.remove(scoreId);
     return scoreId;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Score.deleteScore"))
     );

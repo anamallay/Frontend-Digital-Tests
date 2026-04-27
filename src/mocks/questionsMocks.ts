@@ -158,6 +158,7 @@ export async function mockFetchQuizFromLibrary(quizId: string) {
   if (!quiz) throw axiosError("Quiz not found", 404);
 
   const hydrated = hydrateQuiz(quiz, db);
-  // Slice reads response.data.quiz.questions — match that shape
-  return { data: { quiz: hydrated } };
+  return {
+    data: { message: "Quiz retrieved from library (mock)", data: hydrated },
+  };
 }

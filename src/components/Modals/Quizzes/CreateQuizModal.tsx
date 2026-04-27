@@ -59,7 +59,7 @@ const CreateQuizModal: React.FC<CreateQuizModalProps> = ({
       await dispatch(createQuiz(quizToSubmit)).unwrap();
       dispatch(fetchUserQuizzes());
       onClose();
-    } catch (error) {
+    } catch (error: unknown) {
       setError(t("Modals.CreateQuizModal.error.quizCreationFailed"));
     }
   };

@@ -28,7 +28,7 @@ function ForgotPassword() {
     try {
       await dispatch(forgetPassword({ email })).unwrap();
       setIsSubmitted(true);
-    } catch (err) {
+    } catch (err: unknown) {
       const message =
         typeof err === "string"
           ? err

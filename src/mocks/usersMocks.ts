@@ -52,7 +52,9 @@ export async function mockFetchPublicUsers() {
   const users: PublicUserType[] = MOCK_USERS.map((u) =>
     toPublicUser(u, countPublicQuizzes(u._id))
   );
-  return { data: { data: users } };
+  return {
+    data: { message: "Public users retrieved (mock)", data: users },
+  };
 }
 
 // GET /api/users/public/:id — one user + their authored public quizzes
@@ -70,6 +72,7 @@ export async function mockFetchPublicUserById(userId: string) {
 
   return {
     data: {
+      message: "Public user retrieved (mock)",
       data: {
         user,
         publicQuizzes: authoredPublicQuizzes,

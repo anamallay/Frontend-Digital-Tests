@@ -112,8 +112,7 @@ export async function mockRemoveQuizFromLibrary(quizId: string) {
   commit();
 
   const { list } = currentLibraryQuizzes();
-  // NOTE: the slice reads `response.data.library` for this one endpoint
-  return { data: { library: list } };
+  return { data: { message: "Removed from library (mock)", data: list } };
 }
 
 // POST /api/quizzes/share-quiz  body: { quizId }

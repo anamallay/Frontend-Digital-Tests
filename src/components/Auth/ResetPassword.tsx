@@ -55,7 +55,7 @@ function ResetPassword() {
     try {
       await dispatch(resetPassword({ token, password: newPassword })).unwrap();
       setIsSubmitted(true);
-    } catch (err) {
+    } catch (err: unknown) {
       setFormError(
         (err as { message?: string })?.message ||
           t("Auth.ResetPassword.error_message")

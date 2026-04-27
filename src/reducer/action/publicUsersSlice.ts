@@ -35,7 +35,7 @@ export const fetchPublicUsers = createAsyncThunk<
   try {
     const response = await usersApi.fetchPublic();
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.PublicUsers.fetchUsers"))
     );
@@ -50,7 +50,7 @@ export const fetchPublicUserById = createAsyncThunk<
   try {
     const response = await usersApi.fetchPublicById(userId);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.PublicUsers.fetchUserProfile"))
     );

@@ -145,7 +145,7 @@ export const loginUser = createAsyncThunk<
     const user = unwrapUser(response.data);
     writeLoginFlag(true);
     return user;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(readError(error, t("ReduxMessage.User.loginFailed")));
   }
 });
@@ -157,7 +157,7 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
       await authApi.logout();
       writeLoginFlag(false);
       clearToken();
-    } catch (error) {
+    } catch (error: unknown) {
       return rejectWithValue(
         readError(error, t("ReduxMessage.User.logoutFailed"))
       );
@@ -172,7 +172,7 @@ export const forgetPassword = createAsyncThunk<
 >("user/forgetPassword", async ({ email }, { rejectWithValue }) => {
   try {
     await authApi.forgetPassword(email);
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.User.forgetPasswordFailed"))
     );
@@ -186,7 +186,7 @@ export const resetPassword = createAsyncThunk<
 >("user/resetPassword", async ({ token, password }, { rejectWithValue }) => {
   try {
     await authApi.resetPassword(token, password);
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.User.resetPasswordFailed"))
     );
@@ -211,7 +211,7 @@ export const registerUser = createAsyncThunk<
   try {
     const response = await authApi.register(userData);
     return unwrapUser(response.data);
-  } catch (error) {
+  } catch (error: unknown) {
     const message = readError(
       error,
       t("ReduxMessage.User.registerFailed")
@@ -234,7 +234,7 @@ export const activateAccount = createAsyncThunk<
   try {
     const response = await authApi.activate(token);
     return unwrapUser(response.data);
-  } catch (error) {
+  } catch (error: unknown) {
     const message = readError(
       error,
       t("ReduxMessage.User.activateAccountFailed")
@@ -253,7 +253,7 @@ export const updateUser = createAsyncThunk<
   try {
     const response = await authApi.updateUser(userData);
     return unwrapUser(response.data);
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.User.updateUserFailed"))
     );
@@ -269,7 +269,7 @@ export const resendActivationEmail = createAsyncThunk<
   async ({ email }, { rejectWithValue }) => {
     try {
       await authApi.resendActivation(email);
-    } catch (error) {
+    } catch (error: unknown) {
       return rejectWithValue(
         readError(error, t("ReduxMessage.User.resendActivationEmailFailed"))
       );
@@ -286,7 +286,7 @@ export const deleteAccount = createAsyncThunk<
     await authApi.deleteAccount();
     writeLoginFlag(false);
     clearToken();
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.User.deleteAccountFailed"))
     );
@@ -301,7 +301,7 @@ export const getUserData = createAsyncThunk<
   try {
     const response = await authApi.getUserData();
     return unwrapUser(response.data);
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.User.getUserDataFailed"))
     );

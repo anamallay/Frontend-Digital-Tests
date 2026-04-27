@@ -30,7 +30,9 @@ export async function mockFetchUserScores() {
     return sUserIds.includes(userId);
   });
 
-  return { data: { scores: mine } };
+  return {
+    data: { message: "Scores retrieved (mock)", data: mine },
+  };
 }
 
 // GET /api/scores/:id
@@ -39,7 +41,9 @@ export async function mockFetchSingleScore(scoreId: string) {
   const db = getDB();
   const s = db.scores.find((x) => x._id === scoreId);
   if (!s) throw axiosError("Score not found", 404);
-  return { data: { score: s } };
+  return {
+    data: { message: "Score retrieved (mock)", data: s },
+  };
 }
 
 // GET /api/scores/examiner — scores on quizzes the current user owns
@@ -58,7 +62,9 @@ export async function mockFetchExaminerScores() {
     return sQuizId && myQuizIds.has(sQuizId);
   });
 
-  return { data: { scores } };
+  return {
+    data: { message: "Examiner scores retrieved (mock)", data: scores },
+  };
 }
 
 // POST /api/scores/submit  body: { quizId, answers }
@@ -119,7 +125,9 @@ export async function mockSubmitQuiz(quizId: string, answers: number[]) {
   else db.scores.push(newScore);
   commit();
 
-  return { data: { score: newScore } };
+  return {
+    data: { message: "Quiz submitted (mock)", data: newScore },
+  };
 }
 
 // DELETE /api/scores/delete-score  body: { scoreId }

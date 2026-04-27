@@ -49,7 +49,7 @@ function Login() {
       await dispatch(loginUser(credentials)).unwrap();
       toast.success(t("Auth.Login.welcome_back"));
       navigate("/");
-    } catch (err) {
+    } catch (err: unknown) {
       const message =
         typeof err === "string"
           ? err

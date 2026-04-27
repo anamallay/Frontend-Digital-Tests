@@ -25,7 +25,7 @@ export const fetchQuestionsByQuizId = createAsyncThunk<
   try {
     const response = await questionsApi.fetchByQuiz(quizId);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Question.fetchQuestionsByQuizId"))
     );
@@ -41,7 +41,7 @@ export const fetchQuestionById = createAsyncThunk<
   try {
     const response = await questionsApi.fetchById(questionId);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error fetching question: ", error);
     return rejectWithValue(
       readError(error, t("ReduxMessage.Question.fetchQuestionById"))
@@ -58,7 +58,7 @@ export const addQuestion = createAsyncThunk<
   try {
     const response = await questionsApi.add(questionData);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Question.addQuestion"))
     );
@@ -76,7 +76,7 @@ export const deleteQuestion = createAsyncThunk<
     try {
       const response = await questionsApi.remove(quizId, questionId);
       return response.data.data;
-    } catch (error) {
+    } catch (error: unknown) {
       return rejectWithValue(
         readError(error, t("ReduxMessage.Question.deleteQuestion"))
       );
@@ -95,7 +95,7 @@ export const updateQuestionInQuiz = createAsyncThunk<
     try {
       const response = await questionsApi.update(questionId, questionData);
       return response.data.data;
-    } catch (error) {
+    } catch (error: unknown) {
       return rejectWithValue(
         readError(error, t("ReduxMessage.Question.updateQuestionInQuiz"))
       );
@@ -111,8 +111,8 @@ export const fetchQuizFromLibrary = createAsyncThunk<
 >("quiz/fetchQuizFromLibrary", async (quizId, { rejectWithValue }) => {
   try {
     const response = await questionsApi.fetchFromLibrary(quizId);
-    return response.data.quiz.questions;
-  } catch (error) {
+    return response.data.data.questions;
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Question.fetchQuizFromLibrary"))
     );

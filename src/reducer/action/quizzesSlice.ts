@@ -49,7 +49,7 @@ export const fetchQuizzes = createAsyncThunk<
     }
     // Defensive fallback when the backend returns an unexpected shape.
     return { quizzes: [], totalQuizzes: 0, totalPages: 0, currentPage: 1 };
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.fetchQuizzes"))
     );
@@ -65,7 +65,7 @@ export const fetchUserQuizzes = createAsyncThunk<
   try {
     const response = await quizzesApi.fetchUserQuizzes();
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.fetchUserQuizzes"))
     );
@@ -81,7 +81,7 @@ export const fetchQuizById = createAsyncThunk<
   try {
     const response = await quizzesApi.fetchById(quizId);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.fetchQuizById"))
     );
@@ -97,7 +97,7 @@ export const createQuiz = createAsyncThunk<
   try {
     const response = await quizzesApi.create(quizData);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.createQuiz"))
     );
@@ -113,7 +113,7 @@ export const deleteQuiz = createAsyncThunk<
   try {
     await quizzesApi.remove(quizId);
     return quizId;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.deleteQuiz"))
     );
@@ -129,7 +129,7 @@ export const updateQuiz = createAsyncThunk<
   try {
     const response = await quizzesApi.update(quizId, updatedData);
     return response.data.data;
-  } catch (error) {
+  } catch (error: unknown) {
     return rejectWithValue(
       readError(error, t("ReduxMessage.Quiz.updateQuiz"))
     );

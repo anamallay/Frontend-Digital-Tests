@@ -6,10 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, X } from "lucide-react";
 
 import { AppDispatch } from "../../../reducer/store/store";
-import {
-  fetchUserLibrary,
-  removeQuizFromLibrary,
-} from "../../../reducer/action/librariesSlice";
+import { removeQuizFromLibrary } from "../../../reducer/action/librariesSlice";
 
 import { Button } from "@/components/ui/button";
 
@@ -27,10 +24,7 @@ const DeleteLibraryModal: React.FC<DeleteModalProps> = ({
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDelete = () => {
-    dispatch(removeQuizFromLibrary(quizId)).then(() => {
-      dispatch(fetchUserLibrary());
-      onClose();
-    });
+    dispatch(removeQuizFromLibrary(quizId)).then(() => onClose());
   };
 
   // Close on Escape
