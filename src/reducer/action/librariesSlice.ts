@@ -99,7 +99,11 @@ export const shareQuizWithCandidate = createAsyncThunk<
 const librarySlice = createSlice({
   name: "library",
   initialState: initialLibraryState,
-  reducers: {},
+  reducers: {
+    clearError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserLibrary.pending, (state) => {
@@ -197,4 +201,5 @@ const librarySlice = createSlice({
   },
 });
 
+export const { clearError } = librarySlice.actions;
 export default librarySlice.reducer;

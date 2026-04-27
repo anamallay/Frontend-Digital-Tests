@@ -224,7 +224,7 @@ const QuizQuestions: React.FC = () => {
             {questions.length}
             <span className="mx-2">·</span>
             {answeredCount} / {questions.length}{" "}
-            {t("Score.correctAnswers", "answered")}
+            {t("Score.correctAnswers")}
           </p>
         </div>
         {/*

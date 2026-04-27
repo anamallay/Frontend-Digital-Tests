@@ -124,7 +124,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
   const creatorName =
     creator?.name ||
     creator?.username ||
-    t("PublicQuiz.unknown_user", "Unknown user");
+    t("PublicQuiz.unknown_user");
   const initials = (creator?.username || creator?.name || "?")
     .slice(0, 2)
     .toUpperCase();
@@ -199,8 +199,8 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                     <Lock className="h-3 w-3" />
                   )}
                   {isPublic
-                    ? t("Modals.CreateQuizModal.publicOption", "Public")
-                    : t("Modals.CreateQuizModal.privateOption", "Private")}
+                    ? t("Modals.CreateQuizModal.publicOption")
+                    : t("Modals.CreateQuizModal.privateOption")}
                 </span>
               </div>
               <h3 className="text-2xl font-semibold leading-tight tracking-tight text-foreground">
@@ -276,7 +276,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                 disabled={isSharing}
               >
                 <Share2 className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`} />
-                {t("QuizDetailsModal.shareButton", "Share")}
+                {t("QuizDetailsModal.shareButton")}
               </Button>
 
               <div className="flex items-center gap-2">
@@ -300,7 +300,7 @@ const QuizDetailsModal: React.FC<QuizDetailsModalProps> = ({
                       <BookmarkCheck
                         className={`h-4 w-4 ${isRTL ? "ml-2" : "mr-2"}`}
                       />
-                      {t("QuizDetailsModal.addedLabel", "In your library")}
+                      {t("QuizDetailsModal.addedLabel")}
                     </>
                   ) : (
                     <>

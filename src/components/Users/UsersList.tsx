@@ -34,7 +34,7 @@ const UsersList = () => {
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-          {t("Users.title", "Users")}
+          {t("Users.title")}
         </h1>
         <p className="mt-2 text-muted-foreground">
           {t(
@@ -74,7 +74,7 @@ const UsersList = () => {
             <UsersIcon className="h-6 w-6 text-muted-foreground" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
-            {t("Users.empty", "No users yet")}
+            {t("Users.empty")}
           </h3>
         </div>
       ) : (
@@ -120,7 +120,7 @@ const UsersList = () => {
                           {user.publicQuizzesCount}
                         </span>
                         <span>
-                          {t("Users.publicExamsCount", "public exams")}
+                          {t("Users.publicExamsCount")}
                         </span>
                       </div>
                     </div>

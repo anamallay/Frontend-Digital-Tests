@@ -173,7 +173,8 @@
     "something_went_wrong": "حدث خطأ ما",
     "unexpected_error_description": "حدث خطأ غير متوقع. حاول مرة أخرى، أو أعد تحميل الصفحة إذا استمرت المشكلة.",
     "try_again": "حاول مرة أخرى",
-    "reload_page": "إعادة تحميل الصفحة"
+    "reload_page": "إعادة تحميل الصفحة",
+    "go_back": "العودة"
   },
   "ReduxMessage": {
     "Library": {
@@ -275,7 +276,9 @@
     "addQuiz": "إضافة...",
     "quizAdded": "تمت الإضافة",
     "addQuizTooltip": "اضافة الإختبار للمكتبة",
-    "closeButton": "إغلاق"
+    "closeButton": "إغلاق",
+    "shareButton": "مشاركة",
+    "addedLabel": "في مكتبتك"
   },
   "QuizQuestions": {
     "loadingError": "حدث خطأ أثناء تحميل الأسئلة.",
@@ -373,6 +376,7 @@
       "increaseTime": "زيادة"
     },
     "DeleteQuizModal": {
+      "title": "حذف الاختبار",
       "confirmationMessage": "هل أنت متأكد أنك تريد حذف هذا الاختبار",
       "warning": "تحذير:",
       "warningMessage": "سيتم حذف جميع الدرجات المتعلقة بهذا الإختبار. لا يمكن استعادة هذه المعلومات بعد الحذف",
@@ -400,9 +404,11 @@
       "description": "إليك الرابط القابل للمشاركة للاختبار",
       "copyButton": "نسخ الرابط",
       "copiedButton": "تم النسخ",
-      "closeButton": "إغلاق"
+      "closeButton": "إغلاق",
+      "copyFailed": "فشل النسخ. يرجى تحديد الرابط ونسخه يدوياً."
     },
     "DeleteScoreModal": {
+      "title": "حذف النتيجة",
       "confirmationMessage": "هل أنت متأكد أنك تريد حذف درجة الإختبار؟",
       "confirmButton": "نعم، أنا متأكد",
       "cancelButton": "لا، إلغاء"

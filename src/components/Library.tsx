@@ -17,7 +17,10 @@ import { QuizType } from "../types/QuizType";
 import { isPopulatedUser } from "../types/UserType";
 import { ScoreType } from "../types/ScoreType";
 import { fetchUserScores } from "../reducer/action/scoresSlice";
-import { fetchUserLibrary } from "../reducer/action/librariesSlice";
+import {
+  clearError,
+  fetchUserLibrary,
+} from "../reducer/action/librariesSlice";
 
 import QuizStartModal from "./Modals/Libraries/QuizStartModal";
 import DeleteLibraryModal from "./Modals/Libraries/DeleteLibraryModal";
@@ -62,6 +65,11 @@ const Library: React.FC = () => {
   );
 
   useEffect(() => {
+    // Clear any stale library-slice error from a prior mutation (e.g. a
+    // failed share or remove) before the new fetch fires. The .pending
+    // handler also clears, but doing it explicitly here covers cases
+    // where the error survived because no new fetch was dispatched.
+    dispatch(clearError());
     dispatch(fetchUserLibrary());
     dispatch(fetchUserScores());
   }, [dispatch]);

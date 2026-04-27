@@ -173,7 +173,8 @@
     "something_went_wrong": "Something went wrong",
     "unexpected_error_description": "An unexpected error occurred. Try again, or reload the page if the problem persists.",
     "try_again": "Try again",
-    "reload_page": "Reload page"
+    "reload_page": "Reload page",
+    "go_back": "Go back"
   },
   "ReduxMessage": {
     "Library": {
@@ -275,7 +276,9 @@
     "addQuiz": "Adding...",
     "quizAdded": "Added",
     "addQuizTooltip": "Add quiz to library",
-    "closeButton": "Close"
+    "closeButton": "Close",
+    "shareButton": "Share",
+    "addedLabel": "In your library"
   },
   "QuizQuestions": {
     "loadingError": "An error occurred while loading the questions.",
@@ -373,6 +376,7 @@
       "increaseTime": "Increase"
     },
     "DeleteQuizModal": {
+      "title": "Delete quiz",
       "confirmationMessage": "Are you sure you want to delete this quiz",
       "warning": "Warning:",
       "warningMessage": "All grades related to this quiz will be deleted. This information cannot be restored after deletion",
@@ -400,9 +404,11 @@
       "description": "Here is the shareable link for the quiz",
       "copyButton": "Copy Link",
       "copiedButton": "Link Copied",
-      "closeButton": "Close"
+      "closeButton": "Close",
+      "copyFailed": "Copy failed. Please select the link and copy manually."
     },
     "DeleteScoreModal": {
+      "title": "Delete score",
       "confirmationMessage": "Are you sure you want to delete the test score?",
       "confirmButton": "Yes, I'm sure",
       "cancelButton": "No, Cancel"

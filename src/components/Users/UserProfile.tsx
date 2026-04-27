@@ -90,7 +90,7 @@ const UserProfile = () => {
             <CircleAlert className="h-6 w-6 text-destructive" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
-            {errorProfile || t("UserProfile.notFound", "User not found")}
+            {errorProfile || t("UserProfile.notFound")}
           </h3>
         </div>
       </section>
@@ -149,14 +149,14 @@ const UserProfile = () => {
                   <FileQuestion className="h-3.5 w-3.5 text-muted-foreground" />
                   <span>{currentUser.publicQuizzesCount}</span>
                   <span className="text-muted-foreground">
-                    {t("Users.publicExamsCount", "public exams")}
+                    {t("Users.publicExamsCount")}
                   </span>
                 </span>
                 {joinedDate && (
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-foreground">
                     <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
                     <span className="text-muted-foreground">
-                      {t("UserProfile.joined", "Joined")}
+                      {t("UserProfile.joined")}
                     </span>
                     <span>{joinedDate}</span>
                   </span>
@@ -171,7 +171,7 @@ const UserProfile = () => {
       <div className="mb-6 flex items-center gap-2">
         <FileQuestion className="h-4 w-4 text-muted-foreground" />
         <h2 className="text-base font-semibold text-foreground">
-          {t("UserProfile.publicExamsSection", "Public Exams")}
+          {t("UserProfile.publicExamsSection")}
         </h2>
       </div>
 
@@ -222,14 +222,14 @@ const UserProfile = () => {
                       <span className="font-medium text-foreground">
                         {quiz.questions?.length ?? 0}
                       </span>
-                      <span>{t("Quiz.question", "questions")}</span>
+                      <span>{t("Quiz.question")}</span>
                     </span>
                     <span className="inline-flex items-center gap-1">
                       <UserIcon className="h-3.5 w-3.5" />
                       <span className="font-medium text-foreground">
                         {quiz.time}
                       </span>
-                      <span>{t("Quiz.minutes", "min")}</span>
+                      <span>{t("Quiz.minutes")}</span>
                     </span>
                   </div>
                 </CardContent>

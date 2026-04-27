@@ -90,7 +90,7 @@ const DeleteQuizModal: React.FC<DeleteModalProps> = ({ quizId, onClose }) => {
                 id="delete-quiz-title"
                 className="text-lg font-semibold tracking-tight text-foreground"
               >
-                {t("Modals.DeleteQuizModal.title", "Delete quiz")}
+                {t("Modals.DeleteQuizModal.title")}
               </h2>
             </div>
             <button

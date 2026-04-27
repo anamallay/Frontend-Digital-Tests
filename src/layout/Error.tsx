@@ -83,7 +83,7 @@ const Error = () => {
             <ArrowLeft
               className={`h-4 w-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`}
             />
-            {t("Error.go_back", "Go back")}
+            {t("Error.go_back")}
           </Button>
         </div>
       </motion.div>

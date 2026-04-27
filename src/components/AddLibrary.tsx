@@ -140,7 +140,7 @@ const AddLibrary: React.FC = () => {
               className="mt-2"
             >
               <Link to="/dashboard/library">
-                {t("Header.my_library", "My Library")}
+                {t("Header.my_library")}
                 <ArrowRight
                   className={`h-4 w-4 ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
                 />

@@ -16,7 +16,11 @@ import {
 } from "lucide-react";
 
 import { AppDispatch, RootState } from "../reducer/store/store";
-import { fetchUserQuizzes, updateQuiz } from "../reducer/action/quizzesSlice";
+import {
+  clearError,
+  fetchUserQuizzes,
+  updateQuiz,
+} from "../reducer/action/quizzesSlice";
 import { shareQuizWithCandidate } from "../reducer/action/librariesSlice";
 import { QuizType } from "../types/QuizType";
 
@@ -69,6 +73,10 @@ const Quiz: React.FC = () => {
   const [quizLink, setQuizLink] = useState<string | null>(null);
 
   useEffect(() => {
+    // Clear any stale quizzes-slice error from a prior mutation (e.g. a
+    // failed createQuiz / updateQuiz / deleteQuiz) before the fetch
+    // fires. Mirrors the Login.tsx pattern.
+    dispatch(clearError());
     dispatch(fetchUserQuizzes());
   }, [dispatch]);
 
@@ -125,7 +133,7 @@ const Quiz: React.FC = () => {
             {t("Quiz.title")}
           </h1>
           <p className="mt-2 text-muted-foreground">
-            {t("Quiz.subtitle", "Create, edit, and share your exams")}
+            {t("Quiz.subtitle")}
           </p>
         </div>
         <Button

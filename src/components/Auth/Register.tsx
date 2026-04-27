@@ -1,5 +1,5 @@
 // src/auth/Register.tsx
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AppDispatch, RootState } from "@/reducer/store/store";
 import AuthCard from "../authCard/AuthCard";
-import { registerUser } from "@/reducer/action/usersSlice";
+import { clearError, registerUser } from "@/reducer/action/usersSlice";
 
 interface FormData {
   name: string;
@@ -36,6 +36,13 @@ function Register() {
     Partial<Record<keyof FormData, string>>
   >({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Mirror Login.tsx — clear any stale auth-slice error on mount so a
+  // failed login that left state.users.error set doesn't bleed into the
+  // register page's error banner.
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

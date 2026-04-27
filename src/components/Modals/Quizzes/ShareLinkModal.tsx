@@ -69,9 +69,7 @@ const ShareLinkModal: React.FC<ShareLinkModalProps> = ({
       // Clipboard API can fail on non-HTTPS origins or if the user denies
       // permission. Unlike Redux errors, nothing else surfaces this — so
       // tell the user explicitly.
-      toast.error(
-        t("Modals.ShareLinkModal.copyFailed", "Copy failed. Please select the link and copy manually.")
-      );
+      toast.error(t("Modals.ShareLinkModal.copyFailed"));
     }
   };
 

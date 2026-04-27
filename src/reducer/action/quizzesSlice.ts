@@ -139,7 +139,11 @@ export const updateQuiz = createAsyncThunk<
 const quizSlice = createSlice({
   name: "quiz",
   initialState,
-  reducers: {},
+  reducers: {
+    clearError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Fetch public quizzes
@@ -275,4 +279,5 @@ const quizSlice = createSlice({
   },
 });
 
+export const { clearError } = quizSlice.actions;
 export default quizSlice.reducer;

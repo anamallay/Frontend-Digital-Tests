@@ -114,10 +114,10 @@ const PublicQuiz = () => {
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-          {t("PublicQuiz.title", "Public Exams")}
+          {t("PublicQuiz.title")}
         </h1>
         <p className="mt-2 text-muted-foreground">
-          {t("PublicQuiz.subtitle", "Browse and save exams shared by the community")}
+          {t("PublicQuiz.subtitle")}
         </p>
       </div>
 

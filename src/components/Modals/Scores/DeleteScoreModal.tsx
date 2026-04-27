@@ -78,7 +78,7 @@ const DeleteScoreModal: React.FC<DeleteModalProps> = ({
                   id="delete-score-title"
                   className="text-lg font-semibold tracking-tight text-foreground"
                 >
-                  {t("Modals.DeleteScoreModal.title", "Delete score")}
+                  {t("Modals.DeleteScoreModal.title")}
                 </h2>
               </div>
               <button
