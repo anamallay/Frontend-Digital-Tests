@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Heart } from "lucide-react";
+// import { Heart } from "lucide-react";
 
 const CopyRight = () => {
   const { t, i18n } = useTranslation();
