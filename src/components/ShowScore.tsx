@@ -87,8 +87,8 @@ const ShowScore: React.FC = () => {
   const correctCount = answers.filter((a) => a.isCorrect).length;
   const wrongCount = totalQuestions - correctCount;
 
-  // Candidate — score.user is typed UserType[], take the first
-  const candidate = Array.isArray(score.user) ? score.user[0] : undefined;
+  // Candidate — score.user is the populated user object (single, not array)
+  const candidate = score.user;
   const candidateName =
     candidate?.name || candidate?.username || t("PublicQuiz.unknown_user");
   const candidateUsername = candidate?.username;

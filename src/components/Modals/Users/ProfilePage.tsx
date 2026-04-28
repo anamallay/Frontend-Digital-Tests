@@ -17,11 +17,21 @@ import React, {
   ChangeEvent,
   FormEvent,
   useEffect,
+  useMemo,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { AlertCircle, Mail, Trash2, Loader2 } from "lucide-react";
+import {
+  AlertCircle,
+  Mail,
+  Trash2,
+  Loader2,
+  CheckCircle2,
+  FileText,
+  ListChecks,
+  Trophy,
+} from "lucide-react";
 import { toast } from "react-toastify";
 // import DeleteAccountModal from "../Modals/Users/DeleteAccountModal";
 
@@ -29,6 +39,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   Tooltip,
   TooltipContent,
@@ -38,6 +50,8 @@ import {
 import DeleteAccountModal from "./DeleteAccountModal";
 import { AppDispatch, RootState } from "@/reducer/store/store";
 import { deleteAccount, getUserData, resendActivationEmail, updateUser } from "@/reducer/action/usersSlice";
+import { fetchUserQuizzes } from "@/reducer/action/quizzesSlice";
+import { fetchExaminerQuizScores } from "@/reducer/action/scoresSlice";
 
 const ProfilePage: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -46,6 +60,38 @@ const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
 
   const userData = useSelector((s: RootState) => s.users.userData);
+  const userQuizzes = useSelector((s: RootState) => s.quizzes.quizzes);
+  const isLoadingQuizzes = useSelector((s: RootState) => s.quizzes.isLoading);
+  const examinerScores = useSelector(
+    (s: RootState) => s.scores.examinerScores
+  );
+  const isLoadingScores = useSelector(
+    (s: RootState) => s.scores.isLoadingExaminer
+  );
+
+  useEffect(() => {
+    dispatch(fetchUserQuizzes());
+    dispatch(fetchExaminerQuizScores());
+  }, [dispatch]);
+
+  const averageScore = useMemo(() => {
+    if (examinerScores.length === 0) return null;
+    return Math.round(
+      examinerScores.reduce((sum, s) => sum + s.score, 0) /
+        examinerScores.length
+    );
+  }, [examinerScores]);
+
+  const initials = (userData?.username || userData?.name || "?")
+    .slice(0, 2)
+    .toUpperCase();
+
+  const formattedJoinDate = userData?.createdAt
+    ? new Intl.DateTimeFormat(isRTL ? "ar-EG" : "en-US", {
+        month: "long",
+        year: "numeric",
+      }).format(new Date(userData.createdAt))
+    : null;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -154,6 +200,89 @@ const ProfilePage: React.FC = () => {
             @{userData?.username ?? "—"}
           </p> */}
         </div>
+
+        {/* Hero card — identity + at-a-glance stats */}
+        <Card className="mb-6 overflow-hidden border-border">
+          <CardContent className="p-6 sm:p-8">
+            <div className="flex items-start gap-5">
+              <Avatar className="h-24 w-24 shrink-0 border border-border">
+                <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/5 text-2xl font-semibold text-primary">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="truncate text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                    {userData?.name ?? "—"}
+                  </h2>
+                  {userData?.active && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-700">
+                      <CheckCircle2 className="h-3 w-3" aria-hidden="true" />
+                      {t("ProfilePage.verified")}
+                    </span>
+                  )}
+                </div>
+                <p className="truncate text-sm text-muted-foreground">
+                  @{userData?.username ?? "—"}
+                </p>
+                {formattedJoinDate && (
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {t("ProfilePage.member_since", { date: formattedJoinDate })}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-3 gap-3 border-t border-border pt-6">
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{t("ProfilePage.quizzes_created")}</span>
+                </div>
+                {isLoadingQuizzes ? (
+                  <Skeleton className="h-7 w-12" />
+                ) : (
+                  <span className="text-2xl font-semibold tracking-tight text-foreground">
+                    {userQuizzes.length}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <ListChecks className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{t("ProfilePage.total_submissions")}</span>
+                </div>
+                {isLoadingScores ? (
+                  <Skeleton className="h-7 w-12" />
+                ) : (
+                  <span className="text-2xl font-semibold tracking-tight text-foreground">
+                    {examinerScores.length}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Trophy className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>{t("ProfilePage.average_score")}</span>
+                </div>
+                {isLoadingScores ? (
+                  <Skeleton className="h-7 w-12" />
+                ) : averageScore === null ? (
+                  <span className="text-2xl font-semibold tracking-tight text-foreground">
+                    —
+                  </span>
+                ) : (
+                  <span className="text-2xl font-semibold tracking-tight text-foreground">
+                    <span className="text-primary">{averageScore}</span>
+                    <span className="text-base text-muted-foreground">%</span>
+                  </span>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Main form card */}
         <Card className="border-border">

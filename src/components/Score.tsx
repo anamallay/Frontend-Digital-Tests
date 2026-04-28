@@ -126,12 +126,8 @@ const Score = () => {
         <TooltipProvider delayDuration={200}>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
             {examinerScores.map((score, idx) => {
-              const quiz = Array.isArray(score.quiz)
-                ? score.quiz[0]
-                : score.quiz;
-              const user = Array.isArray(score.user)
-                ? score.user[0]
-                : score.user;
+              const quiz = score.quiz;
+              const user = score.user;
 
               const candidateName =
                 user?.name || user?.username || t("PublicQuiz.unknown_user");

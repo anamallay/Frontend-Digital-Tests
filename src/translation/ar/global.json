@@ -134,7 +134,12 @@
     "activation_warning": "هذا الحساب غير مفعل",
     "resend_activation": "إعادة إرسال بريد التفعيل",
     "delete_account": "حذف الحساب",
-    "delete_account_short_warning": "لا يمكن التراجع عن هذا الإجراء."
+    "delete_account_short_warning": "لا يمكن التراجع عن هذا الإجراء.",
+    "verified": "موثَّق",
+    "member_since": "عضو منذ {{date}}",
+    "quizzes_created": "اختبارات أنشأتها",
+    "total_submissions": "إجمالي المحاولات",
+    "average_score": "متوسط النتيجة"
   },
   "PublicQuiz": {
     "title": "الاختبارات العامة",

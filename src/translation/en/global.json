@@ -134,7 +134,12 @@
     "activation_warning": "This account is not activated",
     "resend_activation": "Resend Activation Email",
     "delete_account": "Delete Account",
-    "delete_account_short_warning": "This action cannot be undone."
+    "delete_account_short_warning": "This action cannot be undone.",
+    "verified": "Verified",
+    "member_since": "Member since {{date}}",
+    "quizzes_created": "Quizzes created",
+    "total_submissions": "Total submissions",
+    "average_score": "Average score"
   },
   "PublicQuiz": {
     "title": "Public Exams",

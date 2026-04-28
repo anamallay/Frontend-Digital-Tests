@@ -10,7 +10,7 @@ export type IAnswer = {
 export type ScoreType = {
   _id: string;
   quiz: QuizType;
-  user: UserType[];
+  user: UserType;
   score: number;
   totalQuestions: number;
   correctAnswers: number;
