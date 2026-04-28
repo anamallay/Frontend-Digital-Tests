@@ -1,12 +1,10 @@
-import CopyRight from "../../layout/CopyRight";
-import Contact from "./Contact";
-import Hero from "./Hero";
-import HowToStart from "./HowToStart";
+import { Outlet } from "react-router-dom";
 
-export const Home = () => {
+const UsersLayout = () => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Single grid layer — top + bottom effect via linear mask */}
+      {/* Single grid layer — top + bottom effect via linear mask.
+          Renders behind every /users route via React Router's <Outlet />. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -23,11 +21,10 @@ export const Home = () => {
       />
 
       <div className="relative">
-        <Hero />
-        <HowToStart />
-        <Contact />
-        <CopyRight />
+        <Outlet />
       </div>
     </div>
   );
 };
+
+export default UsersLayout;

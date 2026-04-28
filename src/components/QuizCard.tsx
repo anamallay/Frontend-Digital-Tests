@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 import { QuizType } from "../types/QuizType";
 
@@ -61,16 +60,11 @@ const QuizCard: React.FC<QuizCardProps> = ({
   footer,
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: Math.min(index * 0.04, 0.3),
-        ease: "easeOut",
-      }}
+    <div
+      className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-backwards motion-reduce:animate-none"
+      style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
     >
-      <Card className="group relative h-full border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
+      <Card className="group relative h-full border-border bg-surface transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 motion-reduce:hover:translate-y-0">
         <CardContent className="flex h-full flex-col p-6">
           {topBar && (
             <div className="mb-3 flex items-center justify-between gap-2">
@@ -98,7 +92,7 @@ const QuizCard: React.FC<QuizCardProps> = ({
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 };
 

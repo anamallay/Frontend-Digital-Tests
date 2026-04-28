@@ -21,6 +21,8 @@ import ResetPassword from "@/components/Auth/ResetPassword";
 import ActivateAccount from "@/components/Auth/ActivateAccount";
 import UsersList from "../components/Users/UsersList";
 import UserProfile from "../components/Users/UserProfile";
+import UsersLayout from "../layout/UsersLayout";
+import DashboardLayout from "../layout/DashboardLayout";
 
 // Lazy — only loaded when the route is hit. These are all behind
 // ProtectedRoute and represent the "deep" dashboard surface.
@@ -63,7 +65,7 @@ function Index() {
                   <Route path="quiz/:quizId" element={<PublicQuiz />} />
                 </Route>
                 {/* Public Users browse routes */}
-                <Route path="users">
+                <Route path="users" element={<UsersLayout />}>
                   <Route index element={<UsersList />} />
                   <Route path=":userId" element={<UserProfile />} />
                 </Route>
@@ -71,31 +73,27 @@ function Index() {
                 <Route element={<ProtectedRoute />}>
                   {/* The user's own editable profile — requires being logged in */}
                   <Route path="profile" element={<ProfilePage />} />
-                  {/* Restored Quiz and Score routes */}
-                  <Route
-                    path="dashboard/add-quiz-to-library/:id"
-                    element={<AddLibrary />}
-                  />
-                  <Route
-                    path="dashboard/add-quiz-via-token/:token"
-                    element={<AddLibrary />}
-                  />
-                  <Route path="dashboard/quizzes" element={<Quiz />} />
-                  <Route path="dashboard/scores" element={<Score />} />
-                  {/* Updated ShowScore route for better clarity */}
-                  <Route
-                    path="dashboard/examiner-score/:id"
-                    element={<ShowScore />}
-                  />
-                  <Route
-                    path="dashboard/myscores/:id"
-                    element={<ShowMyScore />}
-                  />
-                  <Route path="dashboard/library" element={<Library />} />
+                  {/* Timed test page — flat sibling, no decorative grid behind */}
                   <Route
                     path="dashboard/library/:quiz"
                     element={<QuizQuestions />}
                   />
+                  {/* All other /dashboard routes share the grid-background layout */}
+                  <Route path="dashboard" element={<DashboardLayout />}>
+                    <Route
+                      path="add-quiz-to-library/:id"
+                      element={<AddLibrary />}
+                    />
+                    <Route
+                      path="add-quiz-via-token/:token"
+                      element={<AddLibrary />}
+                    />
+                    <Route path="quizzes" element={<Quiz />} />
+                    <Route path="scores" element={<Score />} />
+                    <Route path="examiner-score/:id" element={<ShowScore />} />
+                    <Route path="myscores/:id" element={<ShowMyScore />} />
+                    <Route path="library" element={<Library />} />
+                  </Route>
                 </Route>
 
                 {/* Catch-all Route */}

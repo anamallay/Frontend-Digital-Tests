@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import {
   Calendar,
   CircleAlert,
@@ -49,7 +48,7 @@ const UserProfile = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <Card className="mb-10 border-border">
           <CardContent className="flex items-center gap-5 p-6 sm:p-8">
@@ -83,7 +82,7 @@ const UserProfile = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
@@ -112,15 +111,10 @@ const UserProfile = () => {
   return (
     <section
       dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-28 sm:pt-32"
+      className="relative mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-20 sm:pt-24"
     >
       {/* Profile header card */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="mb-10 overflow-hidden rounded-2xl border border-border bg-surface"
-      >
+      <div className="mb-10 overflow-hidden rounded-2xl border border-border bg-surface animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out motion-reduce:animate-none">
         <div className="relative px-6 py-8 sm:px-10 sm:py-10">
           {/* Soft decorative glow */}
           <div
@@ -131,7 +125,7 @@ const UserProfile = () => {
 
           <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
             <Avatar className="h-20 w-20 shrink-0 border border-border">
-              <AvatarFallback className="bg-primary/10 text-xl font-semibold text-primary">
+              <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/5 text-xl font-semibold text-primary">
                 {initials}
               </AvatarFallback>
             </Avatar>
@@ -165,7 +159,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Public quizzes section */}
       <div className="mb-6 flex items-center gap-2">
@@ -177,7 +171,7 @@ const UserProfile = () => {
 
       {publicQuizzes.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-16 text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-muted to-muted/50">
             <FileQuestion className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-base font-semibold text-foreground">
@@ -187,19 +181,14 @@ const UserProfile = () => {
       ) : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {publicQuizzes.map((quiz, idx) => (
-            <motion.div
+            <div
               key={quiz._id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: Math.min(idx * 0.04, 0.3),
-                ease: "easeOut",
-              }}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-backwards motion-reduce:animate-none"
+              style={{ animationDelay: `${Math.min(idx * 40, 300)}ms` }}
             >
               <Card
                 onClick={() => setSelectedQuiz(quiz)}
-                className="group relative h-full cursor-pointer border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                className="group relative h-full cursor-pointer border-border bg-surface transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 motion-reduce:hover:translate-y-0"
               >
                 <CardContent className="flex h-full flex-col p-6">
                   <div className="flex-1">
@@ -231,7 +220,7 @@ const UserProfile = () => {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}

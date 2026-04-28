@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import {
   Check,
   X,
@@ -41,7 +40,7 @@ const ShowMyScore: React.FC = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <Skeleton className="mb-4 h-8 w-48" />
         <Skeleton className="mb-10 h-6 w-72" />
@@ -67,7 +66,7 @@ const ShowMyScore: React.FC = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
@@ -89,7 +88,7 @@ const ShowMyScore: React.FC = () => {
   return (
     <section
       dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+      className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
     >
       {/* Eyebrow + title */}
       <div className="mb-8">
@@ -102,11 +101,8 @@ const ShowMyScore: React.FC = () => {
       </div>
 
       {/* Score hero */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="mb-6 overflow-hidden rounded-2xl border border-border bg-surface"
+      <div
+        className="mb-6 overflow-hidden rounded-2xl border border-border bg-surface animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out motion-reduce:animate-none"
       >
         <div className="relative px-6 py-8 sm:px-10 sm:py-10">
           {/* Soft primary glow */}
@@ -139,7 +135,7 @@ const ShowMyScore: React.FC = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Summary stats */}
       <div className="mb-10 grid grid-cols-3 gap-3 sm:gap-4">
@@ -208,15 +204,10 @@ const ShowMyScore: React.FC = () => {
           const isCorrect = Boolean(userAnswer?.isCorrect);
 
           return (
-            <motion.div
+            <div
               key={questionItem._id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.25,
-                delay: Math.min(index * 0.04, 0.3),
-                ease: "easeOut",
-              }}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-backwards motion-reduce:animate-none"
+              style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
             >
               <Card className="border-border">
                 <CardContent className="p-5 sm:p-6">
@@ -292,7 +283,7 @@ const ShowMyScore: React.FC = () => {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           );
         })}
       </div>

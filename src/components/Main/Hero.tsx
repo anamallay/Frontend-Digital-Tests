@@ -16,7 +16,7 @@ const Hero = () => {
       dir={isRTL ? "rtl" : "ltr"}
       className="relative mx-auto mt-8 w-[92%] max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface"
     >
-      {/* Video background */}
+      {/* 1. Video background */}
       <video
         autoPlay
         loop
@@ -27,12 +27,10 @@ const Hero = () => {
         <source src="/video/hero-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Gradient overlay for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
-
-      {/* Subtle grid pattern */}
+      {/* 2. Subtle grid pattern (now behind the gradient) */}
       <div
-        className="absolute inset-0 opacity-[0.12]"
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
             "linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)",
@@ -44,10 +42,13 @@ const Hero = () => {
         }}
       />
 
-      {/* Soft primary glow */}
+      {/* 3. Gradient overlay for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+
+      {/* 4. Soft primary glow */}
       <div className="absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
 
-      {/* Content */}
+      {/* 5. Content */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

@@ -127,7 +127,7 @@ const Library: React.FC = () => {
   return (
     <section
       dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-28 sm:pt-32"
+      className="relative mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-20 sm:pt-24"
     >
       {/* Header */}
       <div className="mb-10">
@@ -161,7 +161,7 @@ const Library: React.FC = () => {
       ) : library.length === 0 ? (
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-muted to-muted/50">
             <FileQuestion className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">

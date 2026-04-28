@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { Users as UsersIcon, FileQuestion, CircleAlert } from "lucide-react";
 
 import { AppDispatch, RootState } from "../../reducer/store/store";
@@ -29,7 +28,7 @@ const UsersList = () => {
   return (
     <section
       dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-7xl px-4 pb-20 pt-28 sm:pt-32"
+      className="relative mx-auto w-[92%] max-w-7xl  px-4 pb-18 pt-12 sm:pt-12"
     >
       {/* Header */}
       <div className="mb-10">
@@ -67,7 +66,7 @@ const UsersList = () => {
       ) : users.length === 0 ? (
         /* Empty state */
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-muted">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-muted to-muted/50">
             <UsersIcon className="h-6 w-6 text-muted-foreground" aria-hidden="true" />
           </div>
           <h3 className="text-lg font-semibold text-foreground">
@@ -83,23 +82,18 @@ const UsersList = () => {
               .toUpperCase();
 
             return (
-              <motion.div
+              <div
                 key={user._id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.3,
-                  delay: Math.min(idx * 0.04, 0.3),
-                  ease: "easeOut",
-                }}
+                className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-backwards motion-reduce:animate-none"
+                style={{ animationDelay: `${Math.min(idx * 40, 300)}ms` }}
               >
                 <Card
                   onClick={() => navigate(`/users/${user._id}`)}
-                  className="group relative h-full cursor-pointer border-border bg-surface transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+                  className="group relative h-full cursor-pointer border-border bg-surface transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 motion-reduce:hover:translate-y-0"
                 >
                   <CardContent className="flex items-center gap-4 p-6">
                     <Avatar className="h-12 w-12 shrink-0 border border-border">
-                      <AvatarFallback className="bg-primary/10 text-sm font-semibold text-primary">
+                      <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/5 text-sm font-semibold text-primary">
                         {initials}
                       </AvatarFallback>
                     </Avatar>
@@ -123,7 +117,7 @@ const UsersList = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             );
           })}
         </div>

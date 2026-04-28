@@ -4,16 +4,14 @@ A production-grade React + TypeScript web application for creating, sharing, and
 
 **🔗 [Live Demo](#)** &nbsp;•&nbsp; **📖 [Architecture Highlights](#architecture-highlights)** &nbsp;•&nbsp; **🛠 [Tech Stack](#tech-stack)**
 
-> Replace the Live Demo link above with your deployed URL (Vercel recommended).
-
 ---
 
 ## Screenshots
 
 > ```html
 > <p align="center">
->   <img src="/public/image/one.png.png" width="48%" alt="English LTR view" />
->   <img src="/public/image/two.png" width="48%" alt="Arabic RTL view" />
+>   <img src="public/image/one.png.png" width="48%" alt="English LTR view" />
+>   <img src="public/image/two.png" width="48%" alt="Arabic RTL view" />
 > </p>
 > ```
 

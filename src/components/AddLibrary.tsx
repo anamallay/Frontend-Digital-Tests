@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { BookMarked, CheckCircle2, CircleAlert, ArrowRight } from "lucide-react";
 
 import { AppDispatch } from "../reducer/store/store";
@@ -94,12 +93,7 @@ const AddLibrary: React.FC = () => {
       dir={isRTL ? "rtl" : "ltr"}
       className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-16"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="w-full max-w-md"
-      >
+      <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out motion-reduce:animate-none">
         <Card className="border-border">
           <CardContent className="flex flex-col items-center gap-4 p-8 text-center">
             {/* Icon circle */}
@@ -146,7 +140,7 @@ const AddLibrary: React.FC = () => {
             </Button>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
     </section>
   );
 };

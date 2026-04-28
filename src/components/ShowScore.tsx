@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import {
   Check,
   X,
@@ -40,7 +39,7 @@ const ShowScore: React.FC = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <Skeleton className="mb-4 h-6 w-40" />
         <Skeleton className="mb-2 h-8 w-72" />
@@ -69,7 +68,7 @@ const ShowScore: React.FC = () => {
     return (
       <section
         dir={isRTL ? "rtl" : "ltr"}
-        className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+        className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
       >
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface/50 py-20 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
@@ -100,7 +99,7 @@ const ShowScore: React.FC = () => {
   return (
     <section
       dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-28 sm:pt-32"
+      className="relative mx-auto w-[92%] max-w-4xl px-4 pb-20 pt-20 sm:pt-24"
     >
       {/* Eyebrow + quiz title */}
       <div className="mb-4">
@@ -115,7 +114,7 @@ const ShowScore: React.FC = () => {
       {/* Candidate identity chip */}
       <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-3 py-1.5">
         <Avatar className="h-6 w-6">
-          <AvatarFallback className="bg-primary/10 text-[10px] font-semibold text-primary">
+          <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/5 text-[10px] font-semibold text-primary">
             {initials}
           </AvatarFallback>
         </Avatar>
@@ -130,11 +129,8 @@ const ShowScore: React.FC = () => {
       </div>
 
       {/* Score hero */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="mb-6 overflow-hidden rounded-2xl border border-border bg-surface"
+      <div
+        className="mb-6 overflow-hidden rounded-2xl border border-border bg-surface animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out motion-reduce:animate-none"
       >
         <div className="relative px-6 py-8 sm:px-10 sm:py-10">
           <div
@@ -166,7 +162,7 @@ const ShowScore: React.FC = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Summary stats */}
       <div className="mb-10 grid grid-cols-3 gap-3 sm:gap-4">
@@ -236,15 +232,10 @@ const ShowScore: React.FC = () => {
           const isCorrect = Boolean(userAnswer?.isCorrect);
 
           return (
-            <motion.div
+            <div
               key={questionItem._id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.25,
-                delay: Math.min(index * 0.04, 0.3),
-                ease: "easeOut",
-              }}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out fill-mode-backwards motion-reduce:animate-none"
+              style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
             >
               <Card className="border-border">
                 <CardContent className="p-5 sm:p-6">
@@ -320,7 +311,7 @@ const ShowScore: React.FC = () => {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           );
         })}
       </div>

@@ -21,7 +21,6 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { AlertCircle, Mail, Trash2, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
 // import DeleteAccountModal from "../Modals/Users/DeleteAccountModal";
@@ -125,23 +124,35 @@ const ProfilePage: React.FC = () => {
     : "—";
 
   return (
-    <section
-      dir={isRTL ? "rtl" : "ltr"}
-      className="mx-auto w-[92%] max-w-2xl px-4 pb-20 pt-28 sm:pt-32"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {/* Single grid layer — top + bottom effect via linear mask */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          backgroundPosition: "0 0",
+          maskImage:
+            "linear-gradient(to bottom, black 0%, transparent 30%, transparent 70%, black 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, transparent 30%, transparent 70%, black 100%)",
+        }}
+      />
+      <section
+        dir={isRTL ? "rtl" : "ltr"}
+        className="relative mx-auto w-[92%] max-w-2xl px-4 pb-20 pt-20 sm:pt-24"
       >
+        <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 ease-out motion-reduce:animate-none">
         {/* Page header */}
         <div className="mb-8">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {t("ProfilePage.profile_title")}
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          {/* <p className="mt-1 text-sm text-muted-foreground">
             @{userData?.username ?? "—"}
-          </p>
+          </p> */}
         </div>
 
         {/* Main form card */}
@@ -298,15 +309,16 @@ const ProfilePage: React.FC = () => {
             </TooltipProvider>
           </CardContent>
         </Card>
-      </motion.div>
+        </div>
 
-      {/* Account deletion confirmation — this IS a legitimate modal */}
-      <DeleteAccountModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        onConfirm={handleConfirmDelete}
-      />
-    </section>
+        {/* Account deletion confirmation — this IS a legitimate modal */}
+        <DeleteAccountModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={handleConfirmDelete}
+        />
+      </section>
+    </div>
   );
 };
 

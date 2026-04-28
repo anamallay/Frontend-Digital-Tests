@@ -17,12 +17,12 @@ const CopyRight = () => {
             © {currentYear} {t("Footer.copyright")}
           </p>
 
-          <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <p className="flex items-center gap-1 text-sm text-muted-foreground">
             <span>{t("Footer.madeWith")}</span>
-            <Heart
+            {/* <Heart
               className="h-4 w-4 fill-blue-500 text-blue-500 animate-pulse"
               aria-hidden="true"
-            />
+            /> */}
             <span>{t("Footer.by")}</span>
             <span className="font-medium text-foreground">
               {t("Footer.creatorName")}
