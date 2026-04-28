@@ -123,7 +123,7 @@
       "redirecting_in": "سيتم تحويلك خلال {{count}} ثوانٍ"
     }
   },
-  "ProfileModal": {
+  "ProfilePage": {
     "profile_title": "الملف الشخصي",
     "name_label": "الاسم",
     "email_label": "البريد الإلكتروني",
@@ -133,9 +133,7 @@
     "cancel": "إغلاق",
     "activation_warning": "هذا الحساب غير مفعل",
     "resend_activation": "إعادة إرسال بريد التفعيل",
-    "delete_account": "حذف الحساب"
-  },
-  "ProfilePage": {
+    "delete_account": "حذف الحساب",
     "delete_account_short_warning": "لا يمكن التراجع عن هذا الإجراء."
   },
   "PublicQuiz": {

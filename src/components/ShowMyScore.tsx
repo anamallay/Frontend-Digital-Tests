@@ -277,12 +277,12 @@ const ShowMyScore: React.FC = () => {
 
                             {showCorrect && (
                               <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-emerald-700">
-                                <Check className="h-3.5 w-3.5" />
+                                <Check className="h-3.5 w-3.5" aria-label={t("ShowMyScore.correctAnswer")} />
                               </span>
                             )}
                             {showWrongPick && (
                               <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-destructive">
-                                <X className="h-3.5 w-3.5" />
+                                <X className="h-3.5 w-3.5" aria-label={t("ShowMyScore.wrongAnswer")} />
                               </span>
                             )}
                           </li>

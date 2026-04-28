@@ -49,15 +49,11 @@ const Library: React.FC = () => {
   // Narrow per-field selectors so unrelated slice mutations don't trigger
   // re-renders here. Each `useSelector` short-circuits when its specific
   // field's reference is unchanged.
-  const rawLibrary = useSelector((state: RootState) => state.library.library);
+  const library = useSelector((state: RootState) => state.library.library);
   const libraryLoading = useSelector(
     (state: RootState) => state.library.isLoading
   );
   const libraryError = useSelector((state: RootState) => state.library.error);
-  // Defensive: a stale or out-of-shape Redux value (e.g. from a mutation
-  // thunk that returned { quizLink } instead of the populated array) must
-  // never crash the render. Coerce non-array values to an empty list.
-  const library: QuizType[] = Array.isArray(rawLibrary) ? rawLibrary : [];
 
   const scores = useSelector((state: RootState) => state.scores.userScores);
   const scoresLoading = useSelector(

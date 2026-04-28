@@ -79,7 +79,7 @@ const ProfilePage: React.FC = () => {
     try {
       await dispatch(updateUser(formData)).unwrap();
       await dispatch(getUserData()).unwrap();
-      toast.success(t("ProfileModal.save_changes"));
+      toast.success(t("ProfilePage.save_changes"));
     } catch {
       // Error is surfaced via state.users.error — we stay on the page
       // so the user can retry.
@@ -95,7 +95,7 @@ const ProfilePage: React.FC = () => {
         resendActivationEmail({ email: userData.email })
       ).unwrap();
       await dispatch(getUserData()).unwrap();
-      toast.success(t("ProfileModal.resend_activation"));
+      toast.success(t("ProfilePage.resend_activation"));
     } catch {
       // Error surfaced via state.users.error.
     }
@@ -137,7 +137,7 @@ const ProfilePage: React.FC = () => {
         {/* Page header */}
         <div className="mb-8">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {t("ProfileModal.profile_title")}
+            {t("ProfilePage.profile_title")}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             @{userData?.username ?? "—"}
@@ -154,7 +154,7 @@ const ProfilePage: React.FC = () => {
                   <AlertCircle className="h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-foreground">
-                      {t("ProfileModal.activation_warning")}
+                      {t("ProfilePage.activation_warning")}
                     </p>
                     <button
                       type="button"
@@ -162,7 +162,7 @@ const ProfilePage: React.FC = () => {
                       className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
                     >
                       <Mail className="h-3 w-3" aria-hidden="true" />
-                      {t("ProfileModal.resend_activation")}
+                      {t("ProfilePage.resend_activation")}
                     </button>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ const ProfilePage: React.FC = () => {
               {/* Fields */}
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">{t("ProfileModal.name_label")}</Label>
+                  <Label htmlFor="name">{t("ProfilePage.name_label")}</Label>
                   <Input
                     id="name"
                     name="name"
@@ -179,7 +179,7 @@ const ProfilePage: React.FC = () => {
                     autoComplete="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder={t("ProfileModal.name_label")}
+                    placeholder={t("ProfilePage.name_label")}
                     disabled={isSubmitting}
                     required
                   />
@@ -187,7 +187,7 @@ const ProfilePage: React.FC = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="email">
-                    {t("ProfileModal.email_label")}
+                    {t("ProfilePage.email_label")}
                   </Label>
                   <Input
                     id="email"
@@ -196,7 +196,7 @@ const ProfilePage: React.FC = () => {
                     autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder={t("ProfileModal.email_label")}
+                    placeholder={t("ProfilePage.email_label")}
                     disabled={isSubmitting}
                     required
                   />
@@ -204,7 +204,7 @@ const ProfilePage: React.FC = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="username">
-                    {t("ProfileModal.username_label")}
+                    {t("ProfilePage.username_label")}
                   </Label>
                   <Input
                     id="username"
@@ -213,7 +213,7 @@ const ProfilePage: React.FC = () => {
                     autoComplete="username"
                     value={formData.username}
                     onChange={handleChange}
-                    placeholder={t("ProfileModal.username_label")}
+                    placeholder={t("ProfilePage.username_label")}
                     disabled={isSubmitting}
                     required
                   />
@@ -222,7 +222,7 @@ const ProfilePage: React.FC = () => {
                 {/* Meta row */}
                 <div className="flex items-center justify-between pt-1 text-sm">
                   <span className="text-muted-foreground">
-                    {t("ProfileModal.account_creation_date")}
+                    {t("ProfilePage.account_creation_date")}
                   </span>
                   <span className="font-medium text-foreground">
                     {createdAt}
@@ -239,7 +239,7 @@ const ProfilePage: React.FC = () => {
                   disabled={isSubmitting}
                   className="min-w-[96px]"
                 >
-                  {t("ProfileModal.cancel")}
+                  {t("ProfilePage.cancel")}
                 </Button>
                 <Button
                   type="submit"
@@ -254,7 +254,7 @@ const ProfilePage: React.FC = () => {
                       aria-hidden="true"
                     />
                   )}
-                  {t("ProfileModal.save_changes")}
+                  {t("ProfilePage.save_changes")}
                 </Button>
               </div>
             </form>
@@ -268,7 +268,7 @@ const ProfilePage: React.FC = () => {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-medium text-foreground">
-                    {t("ProfileModal.delete_account")}
+                    {t("ProfilePage.delete_account")}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {t("ProfilePage.delete_account_short_warning")}
@@ -287,7 +287,7 @@ const ProfilePage: React.FC = () => {
                         className={`h-4 w-4 ${isRTL ? "ml-1.5" : "mr-1.5"}`}
                         aria-hidden="true"
                       />
-                      {t("ProfileModal.delete_account")}
+                      {t("ProfilePage.delete_account")}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="top">

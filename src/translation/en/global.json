@@ -123,7 +123,7 @@
       "redirecting_in": "Redirecting in {{count}}…"
     }
   },
-  "ProfileModal": {
+  "ProfilePage": {
     "profile_title": "Profile",
     "name_label": "Name",
     "email_label": "Email",
@@ -133,9 +133,7 @@
     "cancel": "Cancel",
     "activation_warning": "This account is not activated",
     "resend_activation": "Resend Activation Email",
-    "delete_account": "Delete Account"
-  },
-  "ProfilePage": {
+    "delete_account": "Delete Account",
     "delete_account_short_warning": "This action cannot be undone."
   },
   "PublicQuiz": {
